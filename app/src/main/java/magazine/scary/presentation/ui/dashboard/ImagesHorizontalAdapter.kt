@@ -1,0 +1,66 @@
+package magazine.scary.presentation.ui.dashboard
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.recyclerview.widget.RecyclerView
+import com.pixabay.utils.tools.listen
+import kotlinx.android.synthetic.main.image_horizontal_item.view.*
+import magazine.scary.R
+import magazine.scary.domain.entities.ImageModel
+import magazine.scary.tools.utils.ImageLoader
+import javax.inject.Inject
+
+class ImagesHorizontalAdapter @Inject constructor() :
+    RecyclerView.Adapter<ImagesHorizontalAdapter.Holder>() {
+    private lateinit var ctx: Context
+    lateinit var imageClickListener: ImageClickListener
+
+    @Inject
+    lateinit var imageLoader: ImageLoader
+
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): Holder {
+        ctx = parent.context
+        return Holder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.image_horizontal_item,
+                parent,
+                false
+            )
+        ).listen { pos, _ ->
+            images[pos].let { imageClickListener.onImageClicked(it) }
+        }
+    }
+
+    var images = listOf<ImageModel>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+    interface ImageClickListener {
+        fun onImageClicked(image: ImageModel)
+    }
+
+    override fun onBindViewHolder(holder: Holder, position: Int) {
+        val item = images[position]
+        imageLoader.load(
+            preLoadUrl = item.previewURL,
+            url = item.webformatURL,
+            imageView = holder.image
+        )
+
+
+    }
+
+    override fun getItemCount(): Int {
+        return images.size
+    }
+
+    class Holder(view: View) : RecyclerView.ViewHolder(view) {
+          val image: ImageView = view.image
+    }
+
+}

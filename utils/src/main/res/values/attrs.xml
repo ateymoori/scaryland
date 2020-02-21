@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MyTextView">
+        <attr name="textType" format="enum">
+            <enum name="REGULAR" value="0" />
+            <enum name="SEMI_BOLD" value="1" />
+            <enum name="BOLD" value="2" />
+            <enum name="CREDIT_CARD" value="3" />
+        </attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="ViewCountsView">
+        <attr name="count" format="integer" />
+        <attr name="type" format="enum">
+            <enum name="EYE" value="0" />
+            <enum name="HEART" value="1" />
+        </attr>
+    </declare-styleable>
+
+
+</resources>
