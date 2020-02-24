@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="@dimen/_90sdp"
     android:layout_height="@dimen/_140sdp"
-    android:layout_marginEnd="@dimen/_8sdp"
     android:layout_gravity="center"
-    app:cardCornerRadius="@dimen/cornerRadius"
-    app:cardElevation="@dimen/cardElevation">
+    android:layout_marginEnd="@dimen/_3sdp"
+    android:background="@color/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <com.makeramen.roundedimageview.RoundedImageView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:id="@+id/image"
-        android:src="@drawable/girl"
-        app:riv_corner_radius="@dimen/cornerRadius" />
+        android:layout_margin="@dimen/_4sdp"
+        android:background="@color/transparent"
+        android:elevation="@dimen/_6sdp"
+        app:cardCornerRadius="@dimen/_2sdp"
+        app:cardElevation="@dimen/_6sdp">
 
-</androidx.cardview.widget.CardView>
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="@dimen/_3sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/girl"
+            app:riv_border_color="#AB242A38"
+            app:riv_border_width="0.1dp"
+            app:riv_corner_radius="@dimen/_2sdp" />
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

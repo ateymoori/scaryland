@@ -1,61 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/_12sdp"
+    android:id="@+id/swipeLayout"
     android:background="@color/bgColorDark"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context=".presentation.ui.dashboard.DashboardFragment">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bgColorDark">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/startGuideLine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.04" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/endGuideLine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.96" />
-
-    <com.pixabay.utils.views.MyTextView
-        android:id="@+id/myTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Backgrounds"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_16ssp"
-        app:layout_constraintStart_toStartOf="@+id/startGuideLine"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.pixabay.utils.views.MyTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View all"
-        android:textColor="@color/redMiddle"
-        android:textSize="@dimen/_10ssp"
-        app:layout_constraintBottom_toBottomOf="@+id/myTextView"
-        app:layout_constraintEnd_toEndOf="@id/endGuideLine"
-        app:layout_constraintTop_toTopOf="@+id/myTextView" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/imagesList"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_140sdp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="@id/endGuideLine"
-        app:layout_constraintStart_toStartOf="@id/startGuideLine"
-        app:layout_constraintTop_toBottomOf="@+id/myTextView"
-        tools:listitem="@layout/image_horizontal_item" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/startGuideLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.04" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/endGuideLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.96" />
+
+
+            <!--            Stories-->
+
+
+            <com.pixabay.utils.views.MyTextView
+                android:id="@+id/storiesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Top Stories"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintStart_toStartOf="@+id/startGuideLine"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.pixabay.utils.views.MyTextView
+                android:id="@+id/viewAllStories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View all"
+                android:textColor="@color/redMiddle"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/storiesTitle"
+                app:layout_constraintEnd_toEndOf="@id/endGuideLine"
+                app:layout_constraintTop_toTopOf="@+id/storiesTitle" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/storiesList"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_160sdp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@id/endGuideLine"
+                app:layout_constraintStart_toStartOf="@id/startGuideLine"
+                app:layout_constraintTop_toBottomOf="@+id/storiesTitle"
+                tools:listitem="@layout/story_horizontal_item" />
+
+
+
+
+            <!--   Movies -->
+
+            <com.pixabay.utils.views.MyTextView
+                android:id="@+id/moviesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Discover Movies"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintStart_toStartOf="@+id/startGuideLine"
+                app:layout_constraintTop_toBottomOf="@+id/storiesList" />
+
+            <com.pixabay.utils.views.MyTextView
+                android:id="@+id/viewAllMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View all"
+                android:textColor="@color/redMiddle"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/moviesTitle"
+                app:layout_constraintEnd_toEndOf="@id/endGuideLine"
+                app:layout_constraintTop_toTopOf="@+id/moviesTitle" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/moviesList"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_140sdp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@id/endGuideLine"
+                app:layout_constraintStart_toStartOf="@id/startGuideLine"
+                app:layout_constraintTop_toBottomOf="@+id/moviesTitle"
+                tools:listitem="@layout/movie_horizontal_item" />
+
+
+
+
+
+            <!--    Backgrounds-->
+            <com.pixabay.utils.views.MyTextView
+                android:id="@+id/backgroundsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Backgrounds"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintStart_toStartOf="@+id/startGuideLine"
+                app:layout_constraintTop_toBottomOf="@id/moviesList" />
+
+            <com.pixabay.utils.views.MyTextView
+                android:id="@+id/viewAllImages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View all"
+                android:textColor="@color/redMiddle"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/backgroundsTitle"
+                app:layout_constraintEnd_toEndOf="@id/endGuideLine"
+                app:layout_constraintTop_toTopOf="@+id/backgroundsTitle" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/imagesList"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_140sdp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@id/endGuideLine"
+                app:layout_constraintStart_toStartOf="@id/startGuideLine"
+                app:layout_constraintTop_toBottomOf="@+id/backgroundsTitle"
+                tools:listitem="@layout/image_horizontal_item" />
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

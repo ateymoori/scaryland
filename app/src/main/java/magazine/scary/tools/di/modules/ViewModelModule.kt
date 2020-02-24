@@ -8,6 +8,9 @@ import com.pixabay.utils.di.ViewModelKey
 import dagger.Module
 import dagger.multibindings.IntoMap
 import magazine.scary.presentation.ui.dashboard.DashboardViewModel
+import magazine.scary.presentation.ui.images_list.ImagesListViewModel
+import magazine.scary.presentation.ui.movies_list.MoviesListViewModel
+import magazine.scary.presentation.ui.story_detail.StoryDetailReaderViewModel
 
 @Module
 internal abstract class ViewModelModule {
@@ -19,5 +22,21 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DashboardViewModel::class)
     internal abstract fun dashboardVM(viewModel: DashboardViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ImagesListViewModel::class)
+    internal abstract fun imagesListVM(viewModel: ImagesListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MoviesListViewModel::class)
+    internal abstract fun moviesListVM(viewModel: MoviesListViewModel): ViewModel
+
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(StoryDetailReaderViewModel::class)
+    internal abstract fun storyReaderVM(viewModel: StoryDetailReaderViewModel): ViewModel
 
 }

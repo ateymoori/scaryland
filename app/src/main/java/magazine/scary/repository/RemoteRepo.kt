@@ -1,7 +1,6 @@
-package com.pixabay.repo.repo
+package magazine.scary.repository
 
 import magazine.scary.repository.rest.RestService
-import magazine.scary.tools.utils.Cons
 import javax.inject.Inject
 
 
@@ -12,4 +11,13 @@ constructor(private val repoService: RestService) {
         repoService.getImages(
             word
         )
+
+    suspend fun getMovies() =
+        repoService.getMovies()
+
+    suspend fun getStories() =
+        repoService.getStories()
+
+    suspend fun getStory(objectID:String) =
+        repoService.getStory(objectID)
 }

@@ -19,5 +19,9 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="RateView">
+        <attr name="rate" format="string"/>
+    </declare-styleable>
+
 
 </resources>

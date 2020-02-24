@@ -14,5 +14,54 @@
         android:id="@+id/dashboardFragment"
         android:name="magazine.scary.presentation.ui.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_imagesListFrgment"
+            app:destination="@id/imagesListFrgment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_imageViewerFragment"
+            app:destination="@id/imageViewerFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_moviesListFragment"
+            app:destination="@id/moviesListFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_videoDetailsFragment"
+            app:destination="@id/videoDetailsFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_storyReaderFragment"
+            app:destination="@id/storyReaderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imagesListFrgment"
+        android:name="magazine.scary.presentation.ui.images_list.ImagesListFragment"
+        android:label="fragment_images_list_frgment"
+        tools:layout="@layout/fragment_images_list" >
+        <action
+            android:id="@+id/action_imagesListFrgment_to_imageViewerFragment"
+            app:destination="@id/imageViewerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageViewerFragment"
+        android:name="magazine.scary.presentation.ui.image_detail.ImageViewerFragment"
+        android:label="fragment_image_viewer"
+        tools:layout="@layout/fragment_image_viewer" />
+    <fragment
+        android:id="@+id/moviesListFragment"
+        tools:layout="@layout/fragment_movies_list"
+        android:name="magazine.scary.presentation.ui.movies_list.MoviesListFragment"
+        android:label="MoviesListFragment" >
+        <action
+            android:id="@+id/action_moviesListFragment_to_videoDetailsFragment"
+            app:destination="@id/videoDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/videoDetailsFragment"
+        android:name="magazine.scary.presentation.ui.movie_detail.VideoDetailsFragment"
+        android:label="fragment_video_details"
+        tools:layout="@layout/fragment_video_details" />
+    <fragment
+        android:id="@+id/storyReaderFragment"
+        android:name="magazine.scary.presentation.ui.story_detail.StoryReaderFragment"
+        android:label="fragment_story_reader"
+        tools:layout="@layout/fragment_story_reader" />
 </navigation>

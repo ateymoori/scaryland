@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_50sdp"
+    android:layout_height="@dimen/_50sdp"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_4sdp"
+        android:background="@drawable/circle_yellow"
+        android:elevation="@dimen/_3sdp" />
+
+    <com.pixabay.utils.views.MyTextView
+        android:id="@+id/rateView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="8.3"
+        android:textSize="@dimen/_10ssp"
+        android:elevation="@dimen/_4sdp"
+        android:textColor="#ffffff"
+          />
+
+
+</RelativeLayout>

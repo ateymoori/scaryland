@@ -23,6 +23,7 @@ infix fun Double.round(decimals: Int): Double {
     return round(this * multiplier) / multiplier
 }
 
+
 fun String.toast(ctx: Context?) {
     Toast.makeText(ctx, this, Toast.LENGTH_LONG).show()
 }

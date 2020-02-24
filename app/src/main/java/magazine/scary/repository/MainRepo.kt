@@ -1,16 +1,16 @@
-package com.pixabay.repo.repo
+package magazine.scary.repository
 
-import com.pixabay.utils.tools.log
 import magazine.scary.domain.entities.ImageModel
-import java.lang.Exception
-import java.net.UnknownHostException
+import magazine.scary.domain.entities.MovieModel
+import magazine.scary.domain.entities.StoryModel
+import magazine.scary.repository.RemoteRepo
 import javax.inject.Inject
 
 class MainRepo @Inject
-constructor(private val remoteRepo: RemoteRepo ) {
+constructor(private val remoteRepo: RemoteRepo) {
 
     //if remote repo get error in rest connection, then Database will check to return cached data
-    suspend fun search(word: String): List<ImageModel> {
+    suspend fun getImages(word: String): List<ImageModel> {
         return remoteRepo.searchImages(word).hits
 //        return try {
 //            val remoteResults = remoteRepo.searchImages(word).hits
@@ -21,6 +21,18 @@ constructor(private val remoteRepo: RemoteRepo ) {
 //        } catch (e: Exception) {
 //            listOf()
 //        }
+    }
+
+    suspend fun getMovies(): List<MovieModel> {
+        return remoteRepo.getMovies()
+    }
+
+    suspend fun getStories(): List<StoryModel> {
+        return remoteRepo.getStories()
+    }
+
+    suspend fun getStory(objectID: String): StoryModel {
+        return remoteRepo.getStory(objectID)
     }
 
     //Save API data to DB, Send results to View Layer

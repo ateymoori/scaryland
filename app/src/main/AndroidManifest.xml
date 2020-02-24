@@ -3,6 +3,7 @@
     package="magazine.scary">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
     <application
         android:name=".tools.utils.MyApplication"
         android:allowBackup="true"

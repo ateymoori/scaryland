@@ -1,41 +1,57 @@
 package magazine.scary.presentation.ui.dashboard
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.pixabay.repo.repo.MainRepo
+import magazine.scary.repository.MainRepo
 import com.pixabay.utils.base.BaseViewModel
 import com.pixabay.utils.models.Loading
 import com.pixabay.utils.models.Response
 import com.pixabay.utils.models.Success
-import com.pixabay.utils.tools.log
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import magazine.scary.domain.entities.ImageModel
-import magazine.scary.repository.rest.RestService
 import magazine.scary.tools.utils.Cons
 import javax.inject.Inject
 
 class DashboardViewModel @Inject constructor(
     private val mainRepo: MainRepo
-) : BaseViewModel<DashboardContract>() {
+) : BaseViewModel() {
 
 
-    val result = MutableLiveData<Response<Any?>>()
+    val imagesResults = MutableLiveData<Response<Any?>>()
+    val moviesResults = MutableLiveData<Response<Any?>>()
+    val storiesResults = MutableLiveData<Response<Any?>>()
 
     override fun onViewCreated() {
         super.onViewCreated()
-        search(Cons.DEFAULT_SEARCH_WORD)
+        getImages(Cons.DEFAULT_SEARCH_WORD)
+        getVideos()
+        getStories()
     }
-    fun search(word: String) {
+
+    private fun getImages(word: String) {
         viewModelScope.launch {
-            result.value = Loading(null)
-            result.value = withContext(Dispatchers.IO) {
-                Success(data = mainRepo.search(word))
+            imagesResults.value = Loading(null)
+            imagesResults.value = withContext(Dispatchers.IO) {
+                Success(data = mainRepo.getImages(word))
+            }
+        }
+    }
+
+    private fun getVideos() {
+        viewModelScope.launch {
+            moviesResults.value = Loading(null)
+            moviesResults.value = withContext(Dispatchers.IO) {
+                Success(data = mainRepo.getMovies())
+            }
+        }
+    }
+
+    private fun getStories() {
+        viewModelScope.launch {
+            storiesResults.value = Loading(null)
+            storiesResults.value = withContext(Dispatchers.IO) {
+                Success(data = mainRepo.getStories())
             }
         }
     }
