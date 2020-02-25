@@ -9,19 +9,26 @@ import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_video_details.*
+import kotlinx.android.synthetic.main.fragment_video_details.view.*
 import magazine.scary.R
 import magazine.scary.domain.entities.MovieModel
 import magazine.scary.tools.utils.Cons
+import magazine.scary.tools.utils.ImageLoader
+import javax.inject.Inject
 
 class VideoDetailsFragment : Fragment() {
 
-    lateinit var item: MovieModel
+    lateinit var movie: MovieModel
+    @Inject
+    lateinit var imageLoader: ImageLoader
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidSupportInjection.inject(this)
         arguments?.let {
-            item = it.getParcelable(Cons.ITEM_BUNDLE)!!
+            movie = it.getParcelable(Cons.ITEM_BUNDLE)!!
         }
     }
 
@@ -35,12 +42,24 @@ class VideoDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        imageLoader.load(
+            url = movie.wide_image,
+            imageView = poster
+        )
+
+        play.setOnClickListener {
+            poster.visibility = View.GONE
+            play.visibility = View.GONE
+        }
+
+        name.text = "${movie.name} (${movie.year})"
+        content.text = movie.description
 
         lifecycle.addObserver(trailer)
 
         trailer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(@NonNull youTubePlayer: YouTubePlayer) {
-                val videoId = item.thriller ?: ""
+                val videoId = movie.thriller ?: ""
                 youTubePlayer.loadVideo(videoId, 0f)
                 youTubePlayer.pause()
             }

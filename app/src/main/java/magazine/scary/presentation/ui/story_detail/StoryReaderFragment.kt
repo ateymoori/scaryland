@@ -1,6 +1,7 @@
 package magazine.scary.presentation.ui.story_detail
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -47,6 +48,7 @@ class StoryReaderFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_story_reader, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel =
@@ -57,14 +59,26 @@ class StoryReaderFragment : Fragment() {
             url = story.image,
             imageView = image
         )
+        imageLoader.load(
+            url = story.author?.image,
+            imageView = avatar
+        )
+        title.text = story.title
+        author.text = "by ${story.author?.name} "
+
         observeVM()
     }
 
     private fun observeVM() {
         viewModel.storyDetail.observe(viewLifecycleOwner, Observer {
             when (it) {
-                is Success ->
-                    content.text = (it.data as StoryModel).content
+                is Success ->{
+                    var txt = ((it.data as StoryModel).content_a).replace(".", ".\n")
+                    txt += ((it.data as StoryModel).content_b).replace(".", ".\n")
+                    content.text = txt
+                }
+
+
                 else -> {
                 }
             }

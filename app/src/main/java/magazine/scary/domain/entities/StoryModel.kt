@@ -7,7 +7,8 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class StoryModel(
     val ___class: String,
-    val content: String,
+    val content_a: String,
+    val content_b: String,
     val created: Long,
     val image: String,
     val objectId: String,

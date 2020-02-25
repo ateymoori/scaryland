@@ -16,7 +16,7 @@ interface RestService {
     @GET("https://api.backendless.com/C1A6E4E6-FAE9-9C53-FFC4-070083CDDB00/00B121F3-BA9F-4A3E-8B31-46033E7141EC/data/movies")
     suspend fun getMovies(): List<MovieModel>
 
-    @GET("https://api.backendless.com/C1A6E4E6-FAE9-9C53-FFC4-070083CDDB00/00B121F3-BA9F-4A3E-8B31-46033E7141EC/data/stories?props=image%2CobjectId%2Ctitle")
+    @GET("https://api.backendless.com/C1A6E4E6-FAE9-9C53-FFC4-070083CDDB00/00B121F3-BA9F-4A3E-8B31-46033E7141EC/data/stories?props=image%2CobjectId%2Ctitle&sortBy=created%20desc")
     suspend fun getStories(): List<StoryModel>
 
 

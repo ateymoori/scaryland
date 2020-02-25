@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import com.pixabay.utils.models.Success
-import com.pixabay.utils.views.StartSnapHelper
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import magazine.scary.R
@@ -20,6 +18,7 @@ import magazine.scary.domain.entities.ImageModel
 import magazine.scary.domain.entities.MovieModel
 import magazine.scary.domain.entities.StoryModel
 import magazine.scary.tools.utils.Cons
+import magazine.scary.tools.utils.StartSnapHelper
 import javax.inject.Inject
 
 class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener,
@@ -70,7 +69,7 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
             swipeLayout.isRefreshing = false
             when (it) {
                 is Success -> imagesAdaptor.images =
-                    (it.data as List<ImageModel>).shuffled().take(20)
+                    (it.data as List<ImageModel>).take(16)
                 else -> {
                 }
             }

@@ -53,7 +53,6 @@ class ImageViewerFragment : Fragment() {
     private fun setWallpaper(){
         val bitmap = (image.drawable as BitmapDrawable).bitmap
         val wallpaperManager = WallpaperManager.getInstance(activity)
-        //val wallpaperDrawable = wallpaperManager.drawable
         wallpaperManager.setBitmap(bitmap)
     }
 
