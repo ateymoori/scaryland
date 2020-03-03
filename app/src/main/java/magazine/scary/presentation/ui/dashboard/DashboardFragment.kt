@@ -105,6 +105,11 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
                 R.id.action_dashboardFragment_to_moviesListFragment
             )
         }
+        viewAllStories.setOnClickListener {
+            findNavController(it).navigate(
+                R.id.action_dashboardFragment_to_storyListFragment
+            )
+        }
 
         swipeLayout.setOnRefreshListener { viewModel.onViewCreated() }
 

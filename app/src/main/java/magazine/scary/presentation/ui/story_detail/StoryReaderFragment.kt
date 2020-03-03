@@ -9,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.pixabay.utils.models.Loading
 import com.pixabay.utils.models.Success
+import com.pixabay.utils.tools.AppUtils
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_story_reader.*
 import magazine.scary.R
@@ -53,7 +55,7 @@ class StoryReaderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(StoryDetailReaderViewModel::class.java)
-        viewModel.objectID = story.objectId
+        viewModel.fileAddress = story.content_file
         viewModel.onViewCreated()
         imageLoader.load(
             url = story.image,
@@ -66,20 +68,29 @@ class StoryReaderFragment : Fragment() {
         title.text = story.title
         author.text = "by ${story.author?.name} "
 
+        share.setOnClickListener {
+            AppUtils.shareToMessagingApps(
+                activity,
+                "Share Story ${story.title}",
+                "Download ScaryLand and read this story."
+            )
+        }
         observeVM()
     }
 
     private fun observeVM() {
         viewModel.storyDetail.observe(viewLifecycleOwner, Observer {
             when (it) {
-                is Success ->{
-                    var txt = ((it.data as StoryModel).content_a).replace(".", ".\n")
-                    txt += ((it.data as StoryModel).content_b).replace(".", ".\n")
-                    content.text = txt
+                is Success -> {
+                    loading.visibility = View.GONE
+                    content.text = (it.data as String)
+                    //content.setup(content.text)
                 }
-
-
+                is Loading -> {
+                    loading.visibility = View.VISIBLE
+                }
                 else -> {
+                    loading.visibility = View.GONE
                 }
             }
         })

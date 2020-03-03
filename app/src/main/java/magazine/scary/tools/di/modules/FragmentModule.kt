@@ -8,6 +8,7 @@ import magazine.scary.presentation.ui.images_list.ImagesListFragment
 import magazine.scary.presentation.ui.movie_detail.VideoDetailsFragment
 import magazine.scary.presentation.ui.movies_list.MoviesListFragment
 import magazine.scary.presentation.ui.splash.SplashScreenFragment
+import magazine.scary.presentation.ui.stories_list.StoryListFragment
 import magazine.scary.presentation.ui.story_detail.StoryReaderFragment
 
 @Module
@@ -32,5 +33,8 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeVideoDetailFragment(): VideoDetailsFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeStoriesListFragment(): StoryListFragment
 
 }

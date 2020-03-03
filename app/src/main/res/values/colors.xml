@@ -10,6 +10,8 @@
     <color name="white">#ffffff</color>
     <color name="almostWhite">#C4FFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="grayLight">#B9B9B9</color>
+    <color name="grayDark">#6B6B6B</color>
 
 
 

@@ -86,4 +86,6 @@ dependencies {
 
     api 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
     api 'com.github.bluejamesbond:textjustify-android:2.1.6'
+    api 'com.airbnb.android:lottie:3.3.1'
+    api 'com.github.chrisbanes:PhotoView:2.3.0'
 }

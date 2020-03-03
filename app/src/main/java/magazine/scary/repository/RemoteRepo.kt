@@ -3,7 +3,6 @@ package magazine.scary.repository
 import magazine.scary.repository.rest.RestService
 import javax.inject.Inject
 
-
 class RemoteRepo @Inject
 constructor(private val repoService: RestService) {
 
@@ -18,6 +17,6 @@ constructor(private val repoService: RestService) {
     suspend fun getStories() =
         repoService.getStories()
 
-    suspend fun getStory(objectID:String) =
-        repoService.getStory(objectID)
+    suspend fun getStory(fileAddress:String) =
+        repoService.getStory(fileAddress)
 }

@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_storyReaderFragment"
             app:destination="@id/storyReaderFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_storyListFragment"
+            app:destination="@id/storyListFragment" />
     </fragment>
     <fragment
         android:id="@+id/imagesListFrgment"
@@ -54,7 +57,7 @@
             android:id="@+id/action_moviesListFragment_to_videoDetailsFragment"
             app:destination="@id/videoDetailsFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/videoDetailsFragment"
         android:name="magazine.scary.presentation.ui.movie_detail.VideoDetailsFragment"
         android:label="fragment_video_details"
@@ -64,4 +67,13 @@
         android:name="magazine.scary.presentation.ui.story_detail.StoryReaderFragment"
         android:label="fragment_story_reader"
         tools:layout="@layout/fragment_story_reader" />
+    <fragment
+        android:id="@+id/storyListFragment"
+        android:name="magazine.scary.presentation.ui.stories_list.StoryListFragment"
+        android:label="fragment_story_list"
+        tools:layout="@layout/fragment_story_list" >
+        <action
+            android:id="@+id/action_storyListFragment_to_storyReaderFragment"
+            app:destination="@id/storyReaderFragment" />
+    </fragment>
 </navigation>

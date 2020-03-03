@@ -4,6 +4,7 @@ import magazine.scary.domain.entities.ImageModel
 import magazine.scary.domain.entities.MovieModel
 import magazine.scary.domain.entities.StoryModel
 import magazine.scary.repository.RemoteRepo
+import okhttp3.ResponseBody
 import javax.inject.Inject
 
 class MainRepo @Inject
@@ -31,9 +32,8 @@ constructor(private val remoteRepo: RemoteRepo) {
         return remoteRepo.getStories()
     }
 
-    suspend fun getStory(objectID: String): StoryModel {
-        return remoteRepo.getStory(objectID)
-    }
+    suspend fun getStory(fileAddress: String) =
+        remoteRepo.getStory(fileAddress)
 
     //Save API data to DB, Send results to View Layer
 //    private fun cacheRemoteResults(word: String, images: List<ImageModel>) {
