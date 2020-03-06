@@ -12,6 +12,7 @@ data class StoryModel(
     val image: String,
     val objectId: String,
     val ownerId: String?,
+    val reading_time: String?,
     val title: String,
     val author: AuthorModel?,
     val updated: Long

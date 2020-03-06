@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgColorDark"
+    android:background="@color/black"
+    android:fitsSystemWindows="true"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".presentation.ui.dashboard.DashboardFragment">
@@ -24,25 +25,136 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.96" />
 
+    <RelativeLayout
+        android:id="@+id/back"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@drawable/circle_black"
+        android:elevation="@dimen/_100sdp"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_left"
+            android:tint="@color/white" />
+    </RelativeLayout>
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:elevation="@dimen/_102sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/endGuideLine"
+        app:layout_constraintStart_toStartOf="@+id/startGuideLine"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="circle_loading.json"
+        app:lottie_loop="true" />
+
+    <com.pixabay.utils.views.ViewCountsView
+        android:id="@+id/viewsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:elevation="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/endGuideLine"
+        app:layout_constraintTop_toTopOf="parent"
+        app:type="EYE" />
+
+    <com.pixabay.utils.views.ViewCountsView
+        android:id="@+id/favoritesCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="@dimen/_10sdp"
+        app:layout_constraintEnd_toStartOf="@+id/viewsCount"
+        app:layout_constraintTop_toTopOf="parent"
+        app:type="HEART" />
+
 
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/image"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/it"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/setWallpaper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/_26sdp"
+        android:layout_height="@dimen/_26sdp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="@dimen/_10sdp"
+        android:src="@drawable/ic_play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:riv_border_color="@color/almostWhite"
+        app:riv_border_width="0.5dp"
+        app:riv_corner_radius="@dimen/_24sdp"
+        app:riv_oval="true" />
+
+
+    <com.pixabay.utils.views.MyTextView
+        android:id="@+id/copyright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:elevation="@dimen/_105sdp"
+        android:gravity="center"
+        android:rotation="-95"
+        android:text="Pixabay"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_9ssp"
+        app:layout_constraintBottom_toTopOf="@+id/avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_goneMarginBottom="@dimen/_100sdp" />
+
+
+    <com.pixabay.utils.views.MyTextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:elevation="@dimen/_10sdp"
+        android:text="AmirHossein Teymoori"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/avatar"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toTopOf="@+id/avatar" />
+
+
     <Button
         android:id="@+id/setWallpaper"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_34sdp"
-        android:text="Set Wallpaper"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_22sdp"
         android:layout_marginBottom="@dimen/_32sdp"
+        android:background="@drawable/white_border"
+        android:gravity="center"
+        android:paddingStart="@dimen/_6sdp"
+        android:paddingEnd="@dimen/_6sdp"
+        android:text="Set Wallpaper"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_8ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/endGuideLine"
-        app:layout_constraintStart_toStartOf="@+id/startGuideLine" />
+        app:layout_constraintTop_toBottomOf="@+id/avatar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

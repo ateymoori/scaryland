@@ -67,7 +67,7 @@ class StoryReaderFragment : Fragment() {
         )
         title.text = story.title
         author.text = "by ${story.author?.name} "
-
+        back.setOnClickListener { activity?.onBackPressed() }
         share.setOnClickListener {
             AppUtils.shareToMessagingApps(
                 activity,

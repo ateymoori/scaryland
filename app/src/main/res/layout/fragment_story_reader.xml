@@ -8,6 +8,7 @@
     android:fadeScrollbars="false"
     android:gravity="center"
     android:scrollbarStyle="insideInset"
+    android:fitsSystemWindows="true"
     android:scrollbarThumbVertical="@drawable/scrollview_thumb"
     android:scrollbarTrackVertical="@drawable/vertical_scrollview_track"
     android:scrollbars="vertical"
@@ -31,6 +32,27 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.96" />
+
+        <RelativeLayout
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:id="@+id/back"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/circle_black"
+            android:elevation="@dimen/_100sdp"
+            android:padding="@dimen/_5sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_left"
+                android:tint="@color/white" />
+        </RelativeLayout>
 
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="@dimen/_60sdp"

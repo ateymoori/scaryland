@@ -59,6 +59,7 @@ class StoriesListAdapter @Inject constructor() :
             imageView = holder.avatar
         )
         holder.title.text = "${item.title}"
+        holder.readingTime.text = "${item.reading_time}"
     }
 
     override fun getItemCount(): Int {
@@ -69,6 +70,7 @@ class StoriesListAdapter @Inject constructor() :
         val image: ImageView = view.image
         val avatar: ImageView = view.avatar
         val title: TextView = view.title
+        val readingTime: TextView = view.readingTime
     }
 
 }

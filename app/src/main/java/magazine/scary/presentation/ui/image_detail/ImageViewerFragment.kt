@@ -41,16 +41,23 @@ class ImageViewerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         AndroidSupportInjection.inject(this)
+        back.setOnClickListener { activity?.onBackPressed() }
+        setWallpaper.setOnClickListener { setWallpaper() }
 
         imageLoader.load(
             preLoadUrl = item.previewURL,
             url = item.largeImageURL,
-            imageView = image
+            imageView = image,
+            loadingView = loading
         )
-        setWallpaper.setOnClickListener { setWallpaper() }
+        imageLoader.load(url = item.userImageURL, imageView = avatar)
+        username.text = item.user
+        viewsCount.setCount(item.views)
+        favoritesCount.setCount(item.favorites)
+
     }
 
-    private fun setWallpaper(){
+    private fun setWallpaper() {
         val bitmap = (image.drawable as BitmapDrawable).bitmap
         val wallpaperManager = WallpaperManager.getInstance(activity)
         wallpaperManager.setBitmap(bitmap)

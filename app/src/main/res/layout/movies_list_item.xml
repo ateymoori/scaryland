@@ -31,25 +31,21 @@
         android:scaleType="centerCrop"
         android:src="@drawable/it" />
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#2F000000"
-        android:elevation="@dimen/_5sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/image"
-        app:layout_constraintStart_toStartOf="@id/image"
-        app:layout_constraintTop_toTopOf="@+id/image" />
 
     <com.pixabay.utils.views.MyTextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_16sdp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/movie_name_shape"
         android:elevation="@dimen/_10sdp"
+        android:paddingStart="@dimen/_4sdp"
+        android:paddingEnd="@dimen/_8sdp"
+        android:textSize="@dimen/_9ssp"
+        android:gravity="center"
         android:text="AmirHossein Teymoori"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/startGuideLine"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View

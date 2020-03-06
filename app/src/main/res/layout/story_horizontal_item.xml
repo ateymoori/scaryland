@@ -39,6 +39,22 @@
             app:riv_corner_radius="@dimen/_2sdp" />
     </androidx.cardview.widget.CardView>
 
+    <com.pixabay.utils.views.MyTextView
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_16sdp"
+        android:layout_marginTop="8dp"
+        android:id="@+id/readingTime"
+        android:background="@drawable/time_shape"
+        android:elevation="@dimen/_101sdp"
+        android:gravity="center"
+        android:text="15 Mins"
+        android:textSize="@dimen/_7ssp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView"
+         />
+
+
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/avatar"
         android:layout_width="@dimen/_30sdp"

@@ -62,7 +62,7 @@ class StoriesHorizontalAdapter @Inject constructor() :
         )
         holder.title.text = item.title
         holder.author.text = item.author?.name
-
+        holder.readingTime.text = "${item.reading_time}"
     }
 
     override fun getItemCount(): Int {
@@ -74,6 +74,7 @@ class StoriesHorizontalAdapter @Inject constructor() :
         val avatar: ImageView = view.avatar
         val title: TextView = view.title
         val author: TextView = view.author
+        val readingTime: TextView = view.readingTime
     }
 
 }
