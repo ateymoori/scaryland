@@ -2,11 +2,11 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/_12sdp"
-    android:id="@+id/swipeLayout"
     android:background="@color/bgColorDark"
+    android:paddingBottom="@dimen/_12sdp"
     tools:context=".presentation.ui.dashboard.DashboardFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -36,6 +36,29 @@
                 app:layout_constraintGuide_percent="0.96" />
 
 
+            <ImageView
+                android:id="@+id/owlIcon"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginTop="6dp"
+                android:elevation="@dimen/_100sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/owl"
+                app:layout_constraintStart_toStartOf="@+id/startGuideLine"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.pixabay.utils.views.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:elevation="@dimen/_100sdp"
+                android:text="Horror Magazine"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/owlIcon"
+                app:layout_constraintStart_toEndOf="@+id/owlIcon"
+                app:layout_constraintTop_toTopOf="@+id/owlIcon" />
+
             <!--            Stories-->
 
 
@@ -43,20 +66,20 @@
                 android:id="@+id/storiesTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:text="Top Stories"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_16ssp"
                 app:layout_constraintStart_toStartOf="@+id/startGuideLine"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/owlIcon" />
 
             <com.pixabay.utils.views.MyTextView
                 android:id="@+id/viewAllStories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/_4sdp"
                 android:text="View all"
                 android:textColor="@color/redMiddle"
-                android:padding="@dimen/_4sdp"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/storiesTitle"
                 app:layout_constraintEnd_toEndOf="@id/endGuideLine"
@@ -73,8 +96,6 @@
                 app:layout_constraintStart_toStartOf="@id/startGuideLine"
                 app:layout_constraintTop_toBottomOf="@+id/storiesTitle"
                 tools:listitem="@layout/story_horizontal_item" />
-
-
 
 
             <!--   Movies -->
@@ -94,9 +115,9 @@
                 android:id="@+id/viewAllMovies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/_4sdp"
                 android:text="View all"
                 android:textColor="@color/redMiddle"
-                android:padding="@dimen/_4sdp"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/moviesTitle"
                 app:layout_constraintEnd_toEndOf="@id/endGuideLine"
@@ -115,9 +136,6 @@
                 tools:listitem="@layout/movie_horizontal_item" />
 
 
-
-
-
             <!--    Backgrounds-->
             <com.pixabay.utils.views.MyTextView
                 android:id="@+id/backgroundsTitle"
@@ -134,9 +152,9 @@
                 android:id="@+id/viewAllImages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/_4sdp"
                 android:text="View all"
                 android:textColor="@color/redMiddle"
-                android:padding="@dimen/_4sdp"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/backgroundsTitle"
                 app:layout_constraintEnd_toEndOf="@id/endGuideLine"
@@ -155,11 +173,7 @@
                 tools:listitem="@layout/image_horizontal_item" />
 
 
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
     </androidx.core.widget.NestedScrollView>

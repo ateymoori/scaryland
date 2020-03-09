@@ -3,12 +3,12 @@ package magazine.scary.presentation.ui.story_detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.*
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation.findNavController
 import com.pixabay.utils.models.Loading
 import com.pixabay.utils.models.Success
 import com.pixabay.utils.tools.AppUtils
@@ -21,6 +21,8 @@ import magazine.scary.presentation.ui.images_list.ImagesListViewModel
 import magazine.scary.tools.utils.Cons
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
+import kotlin.math.max
+import kotlin.math.min
 
 
 class StoryReaderFragment : Fragment() {
@@ -76,6 +78,7 @@ class StoryReaderFragment : Fragment() {
             )
         }
         observeVM()
+        handleSelectText()
     }
 
     private fun observeVM() {
@@ -97,4 +100,55 @@ class StoryReaderFragment : Fragment() {
 
     }
 
+
+    private fun handleSelectText() {
+        content.customSelectionActionModeCallback = object : ActionMode.Callback {
+            override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
+                menu.removeItem(android.R.id.selectAll)
+                menu.removeItem(android.R.id.cut)
+                menu.removeItem(android.R.id.copy)
+                return true
+            }
+
+            override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
+                menu.add(0, 100, 0, "Translate").setIcon(R.drawable.circle_black)
+                return true
+            }
+
+            override fun onDestroyActionMode(mode: ActionMode) {
+            }
+
+            override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
+                when (item.itemId) {
+                    100 -> {
+                        var min = 0
+                        var max = content.text.length
+                        if (content.isFocused) {
+                            val selStart = content.selectionStart
+                            val selEnd = content.selectionEnd
+
+                            min = max(0, min(selStart, selEnd))
+                            max = max(0, max(selStart, selEnd))
+                        }
+                        val selectedText = content.text.subSequence(min, max)
+                         translate(selectedText.toString())
+                        mode.finish()
+                        return true
+                    }
+                    else -> {
+                    }
+                }
+                return false
+            }
+
+        }
+    }
+
+    private fun translate(word:String){
+        findNavController(content).navigate(
+            R.id.action_storyReaderFragment_to_translateFragment
+            ,
+            bundleOf(Cons.ITEM_BUNDLE to word)
+        )
+    }
 }

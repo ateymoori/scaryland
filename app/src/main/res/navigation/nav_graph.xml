@@ -70,7 +70,11 @@
         android:id="@+id/storyReaderFragment"
         android:name="magazine.scary.presentation.ui.story_detail.StoryReaderFragment"
         android:label="fragment_story_reader"
-        tools:layout="@layout/fragment_story_reader" />
+        tools:layout="@layout/fragment_story_reader" >
+        <action
+            android:id="@+id/action_storyReaderFragment_to_translateFragment"
+            app:destination="@id/translateFragment" />
+    </fragment>
     <fragment
         android:id="@+id/storyListFragment"
         android:name="magazine.scary.presentation.ui.stories_list.StoryListFragment"
@@ -85,4 +89,9 @@
         android:name="magazine.scary.presentation.ui.video_viewer.VideoViewerFragment"
         android:label="fragment_video_viewer"
         tools:layout="@layout/fragment_video_viewer" />
+    <dialog
+        android:id="@+id/translateFragment"
+        android:name="magazine.scary.TranslateFragment"
+        android:label="fragment_translate"
+        tools:layout="@layout/fragment_translate" />
 </navigation>

@@ -49,19 +49,6 @@
                 android:tint="@color/white" />
         </RelativeLayout>
 
-        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-            android:id="@+id/trailer"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_180sdp"
-            app:autoPlay="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:showFullScreenButton="true"
-            app:showSeekBar="true"
-            app:showVideoCurrentTime="true"
-            app:showVideoDuration="true"
-            app:showYouTubeButton="false" />
 
 
         <ImageView
@@ -82,7 +69,7 @@
             android:padding="@dimen/_60sdp"
             android:src="@drawable/ic_play"
             android:tint="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/trailer"
+            app:layout_constraintBottom_toBottomOf="@+id/poster"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -99,7 +86,7 @@
             android:textSize="@dimen/_14ssp"
             app:layout_constraintEnd_toStartOf="@+id/endGuideLine"
             app:layout_constraintStart_toEndOf="@+id/relativeLayout"
-            app:layout_constraintTop_toBottomOf="@+id/trailer"
+            app:layout_constraintTop_toBottomOf="@+id/poster"
             app:textType="BOLD" />
 
         <com.pixabay.utils.views.MyTextView
@@ -162,7 +149,7 @@
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="@+id/startGuideLine"
-            app:layout_constraintTop_toTopOf="@+id/trailer">
+            app:layout_constraintTop_toTopOf="@+id/poster">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

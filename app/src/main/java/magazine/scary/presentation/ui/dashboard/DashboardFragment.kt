@@ -69,7 +69,7 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
             swipeLayout.isRefreshing = false
             when (it) {
                 is Success -> imagesAdaptor.images =
-                    (it.data as List<ImageModel>).take(16)
+                    (it.data as? List<ImageModel>)?.take(16)
                 else -> {
                 }
             }

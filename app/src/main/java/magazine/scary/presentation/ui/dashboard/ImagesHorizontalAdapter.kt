@@ -30,11 +30,11 @@ class ImagesHorizontalAdapter @Inject constructor() :
                 false
             )
         ).listen { pos, _ ->
-            images[pos].let { imageClickListener.onImageClicked(it) }
+            images?.get(pos)?.let { imageClickListener.onImageClicked(it) }
         }
     }
 
-    var images = listOf<ImageModel>()
+    var images:List<ImageModel>? = listOf<ImageModel>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -45,10 +45,10 @@ class ImagesHorizontalAdapter @Inject constructor() :
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val item = images[position]
+        val item = images?.get(position)
         imageLoader.load(
-            preLoadUrl = item.previewURL,
-            url = item.webformatURL,
+            preLoadUrl = item?.previewURL,
+            url = item?.webformatURL,
             imageView = holder.image
         )
 
@@ -56,7 +56,7 @@ class ImagesHorizontalAdapter @Inject constructor() :
     }
 
     override fun getItemCount(): Int {
-        return images.size
+        return images?.size ?:0
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
