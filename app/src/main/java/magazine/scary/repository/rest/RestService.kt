@@ -4,6 +4,9 @@ import magazine.scary.domain.entities.MovieModel
 import magazine.scary.domain.entities.ResponseModel
 import magazine.scary.domain.entities.StoryModel
 import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.http.*
 
 interface RestService {
@@ -20,6 +23,16 @@ interface RestService {
 
     @Streaming
     @GET("{fileAddress}")
-    suspend fun getStory(@Path("fileAddress", encoded = true) objectID: String):  ResponseBody
+    suspend fun getStory(@Path("fileAddress", encoded = true) objectID: String): ResponseBody
+
+
+    @Streaming
+    @Headers("Content-Type: application/json")
+    @GET("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&dt=t")
+    suspend fun translate(
+        @Query("tl") lang_code: String,
+        @Query("q") word: String
+    ): ResponseBody
+
 
 }

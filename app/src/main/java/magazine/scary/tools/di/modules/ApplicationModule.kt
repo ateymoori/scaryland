@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
@@ -21,11 +22,13 @@ open class ApplicationModule {
     @Provides
     fun provideRetrofit(
         converter: GsonConverterFactory,
+        textConverter: ScalarsConverterFactory,
         httpClient: OkHttpClient.Builder,
         @Named("baseURL") baseURL: String
     ): Retrofit {
         val retrofitClass =
             RetrofitServiceGenerator(
+                textConverter,
                 converter,
                 httpClient,
                 baseURL
@@ -61,6 +64,11 @@ open class ApplicationModule {
     @Provides
     fun provideGSONConverterFactory(): GsonConverterFactory {
         return GsonConverterFactory.create()
+    }
+    @Singleton
+    @Provides
+    fun provideTextConverterFactory(): ScalarsConverterFactory {
+        return ScalarsConverterFactory.create()
     }
 
     @Singleton

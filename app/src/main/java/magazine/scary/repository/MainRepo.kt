@@ -35,6 +35,10 @@ constructor(private val remoteRepo: RemoteRepo) {
     suspend fun getStory(fileAddress: String) =
         remoteRepo.getStory(fileAddress)
 
+
+    suspend fun translate(language_code: String, word: String) =
+        remoteRepo.translate(language_code, word)
+
     //Save API data to DB, Send results to View Layer
 //    private fun cacheRemoteResults(word: String, images: List<ImageModel>) {
 //        dbRepo.insertAll(images.onEach { it.searchWord = word })

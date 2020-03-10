@@ -91,7 +91,7 @@
         tools:layout="@layout/fragment_video_viewer" />
     <dialog
         android:id="@+id/translateFragment"
-        android:name="magazine.scary.TranslateFragment"
+        android:name="magazine.scary.presentation.ui.translate.TranslateFragment"
         android:label="fragment_translate"
         tools:layout="@layout/fragment_translate" />
 </navigation>

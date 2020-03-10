@@ -60,13 +60,25 @@
             app:layout_constraintTop_toBottomOf="@+id/back" />
 
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:layout_width="0dp"
             android:id="@+id/languagesList"
+            android:layout_width="0dp"
             android:layout_height="@dimen/_32sdp"
-            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginTop="24dp"
             app:layout_constraintEnd_toStartOf="@+id/endGuideLine"
             app:layout_constraintStart_toStartOf="@+id/startGuideLine"
             app:layout_constraintTop_toBottomOf="@+id/originalText" />
+
+
+        <com.pixabay.utils.views.MyTextView
+            android:id="@+id/translated"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:maxLines="4"
+            android:text="original original original original original original original original original original "
+            app:layout_constraintEnd_toEndOf="@id/endGuideLine"
+            app:layout_constraintStart_toStartOf="@+id/startGuideLine"
+            app:layout_constraintTop_toBottomOf="@+id/languagesList" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import magazine.scary.presentation.ui.images_list.ImagesListViewModel
 import magazine.scary.presentation.ui.movies_list.MoviesListViewModel
 import magazine.scary.presentation.ui.stories_list.StoriesListViewModel
 import magazine.scary.presentation.ui.story_detail.StoryDetailReaderViewModel
+import magazine.scary.presentation.ui.translate.TranslateViewModel
 
 @Module
 internal abstract class ViewModelModule {
@@ -45,5 +46,11 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(StoriesListViewModel::class)
     internal abstract fun storyListVM(viewModel: StoriesListViewModel): ViewModel
+
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TranslateViewModel::class)
+    internal abstract fun translateVM(viewModel: TranslateViewModel): ViewModel
 
 }

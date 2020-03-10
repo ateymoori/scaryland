@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import java.io.IOException
+import java.io.InputStream
 
 class AppUtils {
 
 
-    companion object{
+    companion object {
 
         fun shareToMessagingApps(mActivity: Activity?, title: String, message: String) {
             val intent = Intent(Intent.ACTION_SEND)
@@ -29,5 +31,26 @@ class AppUtils {
                 "000"
             }
         }
+
+
+        fun assetsToString(context: Context?, file: String): String? {
+            var json: String? = null
+            try {
+                val inputStream: InputStream? = context?.assets?.open(file)
+                if (inputStream != null) {
+
+                    val size: Int = inputStream.available()
+                    val buffer = ByteArray(size)
+                    inputStream.read(buffer)
+                    inputStream.close()
+                    json = String(buffer, Charsets.UTF_8)
+                }
+
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            return json
+        }
+
     }
 }

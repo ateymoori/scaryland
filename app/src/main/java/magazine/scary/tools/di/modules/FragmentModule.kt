@@ -2,7 +2,7 @@ package magazine.scary.tools.di.modules
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import magazine.scary.TranslateFragment
+import magazine.scary.presentation.ui.translate.TranslateFragment
 import magazine.scary.presentation.ui.video_viewer.VideoViewerFragment
 import magazine.scary.presentation.ui.dashboard.DashboardFragment
 import magazine.scary.presentation.ui.image_detail.ImageViewerFragment

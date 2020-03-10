@@ -17,6 +17,9 @@ constructor(private val repoService: RestService) {
     suspend fun getStories() =
         repoService.getStories()
 
-    suspend fun getStory(fileAddress:String) =
+    suspend fun getStory(fileAddress: String) =
         repoService.getStory(fileAddress)
+
+    suspend fun translate(language_code: String, word: String) =
+        repoService.translate(language_code, word)
 }
