@@ -21,5 +21,5 @@ constructor(private val repoService: RestService) {
         repoService.getStory(fileAddress)
 
     suspend fun translate(language_code: String, word: String) =
-        repoService.translate(language_code, word)
+        repoService.translate(lang_code = language_code, word = word , client = "gtx" , sl ="auto" , dt="t" )
 }

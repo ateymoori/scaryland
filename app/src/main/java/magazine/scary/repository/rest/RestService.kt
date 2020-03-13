@@ -26,12 +26,15 @@ interface RestService {
     suspend fun getStory(@Path("fileAddress", encoded = true) objectID: String): ResponseBody
 
 
+    @FormUrlEncoded
     @Streaming
-    @Headers("Content-Type: application/json")
-    @GET("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&dt=t")
+    @POST("https://translate.googleapis.com/translate_a/single")
     suspend fun translate(
-        @Query("tl") lang_code: String,
-        @Query("q") word: String
+        @Field("client") client: String,
+        @Field("sl") sl: String,
+        @Field("dt") dt: String,
+        @Field("tl") lang_code: String,
+        @Field("q") word: String
     ): ResponseBody
 
 

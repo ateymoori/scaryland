@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "450995016783",
+    "firebase_url": "https://horrormagazine-8811a.firebaseio.com",
+    "project_id": "horrormagazine-8811a",
+    "storage_bucket": "horrormagazine-8811a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450995016783:android:8539f1304054ebd844463a",
+        "android_client_info": {
+          "package_name": "magazine.scary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450995016783-2n71r6lmt16lma255saj7kbh9sk6fgvf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "magazine.scary",
+            "certificate_hash": "36fc00440ed11628c2a9ac27515199198edd0b27"
+          }
+        },
+        {
+          "client_id": "450995016783-p3har4t9suvu97nd1o8mjgl77gp87lbf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJYixgFNbZqfN3ZaOp6zXm27lG1nEhhiE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450995016783-p3har4t9suvu97nd1o8mjgl77gp87lbf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

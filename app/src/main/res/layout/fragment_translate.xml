@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/_300sdp"
+    android:background="@color/almostWhite"
     android:fitsSystemWindows="true"
     tools:context=".presentation.ui.dashboard.DashboardFragment">
 
@@ -54,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:maxLines="4"
-            android:text="original original original original original original original original original original "
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@id/endGuideLine"
             app:layout_constraintStart_toStartOf="@+id/startGuideLine"
             app:layout_constraintTop_toBottomOf="@+id/back" />
@@ -62,6 +63,7 @@
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/languagesList"
             android:layout_width="0dp"
+            style="@style/mySpinnerItemStyle"
             android:layout_height="@dimen/_32sdp"
             android:layout_marginTop="24dp"
             app:layout_constraintEnd_toStartOf="@+id/endGuideLine"
@@ -75,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:maxLines="4"
-            android:text="original original original original original original original original original original "
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@id/endGuideLine"
             app:layout_constraintStart_toStartOf="@+id/startGuideLine"
             app:layout_constraintTop_toBottomOf="@+id/languagesList" />

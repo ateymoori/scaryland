@@ -1,12 +1,14 @@
 package magazine.scary.presentation.ui.translate
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
@@ -15,16 +17,16 @@ import com.pixabay.utils.models.LanguageModel
 import com.pixabay.utils.models.Success
 import com.pixabay.utils.tools.AppUtils
 import com.pixabay.utils.tools.log
-import com.pixabay.utils.tools.toast
 import com.pixabay.utils.views.ExpandedBottomSheetDialog
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_translate.*
+import kotlinx.android.synthetic.main.fragment_translate.back
+import kotlinx.android.synthetic.main.fragment_video_details.*
 import magazine.scary.R
-import magazine.scary.presentation.ui.story_detail.StoryDetailReaderViewModel
 import magazine.scary.tools.utils.Cons
-import okhttp3.ResponseBody
 import org.json.JSONArray
 import javax.inject.Inject
+
 
 class TranslateFragment : ExpandedBottomSheetDialog(), AdapterView.OnItemSelectedListener {
 
@@ -51,18 +53,14 @@ class TranslateFragment : ExpandedBottomSheetDialog(), AdapterView.OnItemSelecte
         return inflater.inflate(R.layout.fragment_translate, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(TranslateViewModel::class.java)
 
+        back.setOnClickListener { dismiss() }
 
         originalText.text = word
-
-        languagesList.setTitle("Select Language");
-        languagesList.setPositiveButton("OK");
-
 
         val langs = AppUtils.assetsToString(activity, "languages.json")
 
@@ -84,7 +82,6 @@ class TranslateFragment : ExpandedBottomSheetDialog(), AdapterView.OnItemSelecte
         }
         languagesList.onItemSelectedListener = this
 
-
         viewModel.translateResult.observe(viewLifecycleOwner, Observer {
             if (it is Success) {
                 val value = (it.data as String)
@@ -95,6 +92,11 @@ class TranslateFragment : ExpandedBottomSheetDialog(), AdapterView.OnItemSelecte
                 translated.text = result
             }
         })
+
+        languagesList.setTitle("Select Language (${languagesListJS.size} Languages)")
+        languagesList.setPositiveButton("OK")
+
+
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -103,14 +105,11 @@ class TranslateFragment : ExpandedBottomSheetDialog(), AdapterView.OnItemSelecte
 
     override fun onItemSelected(adapter: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
         val selectedLang = adapter?.getItemAtPosition(position) as? String
-        selectedLang?.toast(activity)
         languagesListJS.forEach {
             if ("${it.name} (${it.nativeName})" == selectedLang) {
                 selectedLangCode = it.code
-                viewModel.translate(selectedLangCode, word)
+                viewModel.translate(selectedLangCode, word.replace(";",""))
             }
         }
     }
-
-
 }
