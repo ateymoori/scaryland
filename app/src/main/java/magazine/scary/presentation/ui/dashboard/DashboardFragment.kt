@@ -17,6 +17,7 @@ import magazine.scary.R
 import magazine.scary.domain.entities.ImageModel
 import magazine.scary.domain.entities.MovieModel
 import magazine.scary.domain.entities.StoryModel
+import magazine.scary.presentation.ui.container.MainActivity
 import magazine.scary.tools.utils.Cons
 import magazine.scary.tools.utils.StartSnapHelper
 import javax.inject.Inject
@@ -28,8 +29,10 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
 
     @Inject
     lateinit var imagesAdaptor: ImagesHorizontalAdapter
+
     @Inject
     lateinit var moviesAdapter: MoviesHorizontalAdapter
+
     @Inject
     lateinit var storiesAdapter: StoriesHorizontalAdapter
 
@@ -113,6 +116,7 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
 
         swipeLayout.setOnRefreshListener { viewModel.onViewCreated() }
 
+        menu.setOnClickListener { (activity as? MainActivity)?.toggleMenu() }
     }
 
     override fun onImageClicked(image: ImageModel) {

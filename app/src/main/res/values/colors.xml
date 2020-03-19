@@ -7,6 +7,7 @@
 
 
     <color name="black">#000000</color>
+    <color name="almostBlack">#141820</color>
     <color name="bgColorDark">#242a38</color>
     <color name="redMiddle">#ff2055</color>
     <color name="white">#ffffff</color>
@@ -14,6 +15,7 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="grayLight">#B9B9B9</color>
     <color name="grayDark">#6B6B6B</color>
+    <color name="grayDarkest">#484848</color>
 
 
 

@@ -59,6 +59,17 @@
                 app:layout_constraintStart_toEndOf="@+id/owlIcon"
                 app:layout_constraintTop_toTopOf="@+id/owlIcon" />
 
+            <ImageView
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:layout_marginTop="8dp"
+                android:id="@+id/menu"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_menu"
+                app:layout_constraintEnd_toStartOf="@+id/endGuideLine"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/white" />
+
             <!--            Stories-->
 
 

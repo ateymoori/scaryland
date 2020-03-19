@@ -12,4 +12,11 @@
     <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/redMiddle</item>
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+
 </resources>
