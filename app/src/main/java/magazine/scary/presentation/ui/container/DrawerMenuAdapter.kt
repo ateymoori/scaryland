@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import com.pixabay.utils.views.MyTextView
 import magazine.scary.R
 import magazine.scary.domain.entities.MenuModel
 
-class DrawerMenuAdapter(context: Context, val items: List<MenuModel>) : BaseAdapter() {
+class DrawerMenuAdapter(private val context: Context?, private val items: List<MenuModel>) : BaseAdapter() {
 
     private val mInflator: LayoutInflater = LayoutInflater.from(context)
 
@@ -38,11 +40,13 @@ class DrawerMenuAdapter(context: Context, val items: List<MenuModel>) : BaseAdap
         }
 
         vh.title.text = items[position].title
+        vh.icon.setImageDrawable(context?.let { ContextCompat.getDrawable(it, items[position].icon) })
         return view
     }
 
     class ListRowHolder(row: View?) {
         val title: MyTextView = row?.findViewById(R.id.title) as MyTextView
+        val icon: ImageView = row?.findViewById(R.id.icon) as ImageView
     }
 
 

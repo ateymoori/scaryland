@@ -6,9 +6,9 @@
     android:layout_gravity="center" >
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="@dimen/_54sdp"
-        android:layout_height="@dimen/_54sdp"
+        android:id="@+id/icon"
+        android:layout_width="@dimen/_44sdp"
+        android:layout_height="@dimen/_44sdp"
         android:layout_marginTop="8dp"
         android:padding="@dimen/_12sdp"
         android:src="@drawable/ic_review"
@@ -27,5 +27,5 @@
         android:textSize="@dimen/_10ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

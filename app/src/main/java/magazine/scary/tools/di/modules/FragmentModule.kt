@@ -2,6 +2,7 @@ package magazine.scary.tools.di.modules
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import magazine.scary.NavigationDrawerFragment
 import magazine.scary.presentation.ui.translate.TranslateFragment
 import magazine.scary.presentation.ui.video_viewer.VideoViewerFragment
 import magazine.scary.presentation.ui.dashboard.DashboardFragment
@@ -44,5 +45,8 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeTranslateFragment(): TranslateFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeDrawerFragment(): NavigationDrawerFragment
 
 }

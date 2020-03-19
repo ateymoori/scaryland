@@ -95,4 +95,9 @@
         android:name="magazine.scary.presentation.ui.translate.TranslateFragment"
         android:label="fragment_translate"
         tools:layout="@layout/fragment_translate" />
+    <fragment
+        android:id="@+id/navigationDrawerFragment"
+        android:name="magazine.scary.NavigationDrawerFragment"
+        android:label="fragment_navigation_drawer"
+        tools:layout="@layout/fragment_navigation_drawer" />
 </navigation>
