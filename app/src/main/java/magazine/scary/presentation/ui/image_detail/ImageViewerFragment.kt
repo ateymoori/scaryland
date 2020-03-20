@@ -51,6 +51,7 @@ class ImageViewerFragment : Fragment() {
             loadingView = loading
         )
         imageLoader.load(url = item.userImageURL, imageView = avatar)
+
         username.text = item.user
         viewsCount.setCount(item.views)
         favoritesCount.setCount(item.favorites)

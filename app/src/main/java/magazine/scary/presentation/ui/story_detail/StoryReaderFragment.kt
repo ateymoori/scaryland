@@ -73,8 +73,12 @@ class StoryReaderFragment : Fragment() {
         share.setOnClickListener {
             AppUtils.shareToMessagingApps(
                 activity,
-                "Share Story ${story.title}",
+                "Share Story ",
                 "Download ScaryLand and read this story."
+            )
+            AppUtils.shareToMessagingApps(
+                activity, title = "Hi there!",
+                message = "Install Horror Magazine to read ${story.title} by ${story.author?.name} . \n https://play.google.com/store/apps/details?id=magazine.scary"
             )
         }
         observeVM()

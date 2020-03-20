@@ -13,7 +13,7 @@ data class ImageModel(
     val favorites: Int? = null,
     val fullHDURL: String? = null,
     @PrimaryKey
-    val id: Int,
+    val id: Int? = null,
     val imageHeight: Int? = null,
     val imageSize: Int? = null,
     val imageURL: String? = null,

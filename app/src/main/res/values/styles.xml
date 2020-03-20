@@ -16,6 +16,7 @@
     <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/redMiddle</item>
         <item name="android:textColorSecondary">@color/white</item>
+        <item name="background">@color/transparent</item>
     </style>
 
 

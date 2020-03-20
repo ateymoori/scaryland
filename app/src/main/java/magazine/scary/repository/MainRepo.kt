@@ -36,6 +36,10 @@ constructor(private val remoteRepo: RemoteRepo) {
         remoteRepo.getStory(fileAddress)
 
 
+    suspend fun getMoviePosters(movieID: String) =
+        remoteRepo.getMoviePosters(movieID)
+
+
     suspend fun translate(language_code: String, word: String) =
         remoteRepo.translate(language_code, word)
 

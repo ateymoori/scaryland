@@ -1,4 +1,4 @@
-package magazine.scary.presentation.ui.dashboard
+package magazine.scary.presentation.ui.movie_posters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -13,8 +13,8 @@ import magazine.scary.domain.entities.ImageModel
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
 
-class ImagesHorizontalAdapter @Inject constructor() :
-    RecyclerView.Adapter<ImagesHorizontalAdapter.Holder>() {
+class PostersHorizontalAdapter @Inject constructor() :
+    RecyclerView.Adapter<PostersHorizontalAdapter.Holder>() {
     private lateinit var ctx: Context
     lateinit var imageClickListener: ImageClickListener
 
@@ -25,7 +25,7 @@ class ImagesHorizontalAdapter @Inject constructor() :
         ctx = parent.context
         return Holder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.image_horizontal_item,
+                R.layout.poster_wide_horizontal_item,
                 parent,
                 false
             )

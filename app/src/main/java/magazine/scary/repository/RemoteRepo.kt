@@ -20,6 +20,15 @@ constructor(private val repoService: RestService) {
     suspend fun getStory(fileAddress: String) =
         repoService.getStory(fileAddress)
 
+    suspend fun getMoviePosters(movieID: String) =
+        repoService.getMoviePosters(movieID)
+
     suspend fun translate(language_code: String, word: String) =
-        repoService.translate(lang_code = language_code, word = word , client = "gtx" , sl ="auto" , dt="t" )
+        repoService.translate(
+            lang_code = language_code,
+            word = word,
+            client = "gtx",
+            sl = "auto",
+            dt = "t"
+        )
 }

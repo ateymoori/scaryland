@@ -27,7 +27,7 @@
 
         <fragment
             android:id="@+id/menu"
-            class="magazine.scary.NavigationDrawerFragment"
+            class="magazine.scary.presentation.ui.drawer.NavigationDrawerFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </com.google.android.material.navigation.NavigationView>

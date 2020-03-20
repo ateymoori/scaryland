@@ -119,6 +119,7 @@
         android:rotation="-95"
         android:text="Pixabay"
         android:textColor="@color/white"
+        android:visibility="gone"
         android:textSize="@dimen/_9ssp"
         app:layout_constraintBottom_toTopOf="@+id/avatar"
         app:layout_constraintStart_toStartOf="parent"

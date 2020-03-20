@@ -1,9 +1,12 @@
 package magazine.scary.tools.di.modules
 
 import android.util.Log
+import androidx.fragment.app.FragmentManager
 import com.pixabay.utils.di.RetrofitServiceGenerator
 import dagger.Module
 import dagger.Provides
+import magazine.scary.presentation.ui.movie_detail.VideoDetailsFragment
+import magazine.scary.presentation.ui.movie_posters.MoviePagerAdapter
 import magazine.scary.repository.rest.RestService
 import magazine.scary.tools.utils.Cons
 import okhttp3.OkHttpClient
@@ -83,5 +86,21 @@ open class ApplicationModule {
     fun getMainInterface(retrofit: Retrofit): RestService {
         return retrofit.create(RestService::class.java)
     }
+
+//    @Singleton
+//    @Provides
+//    fun provideVideoDetailsFragment(  ): VideoDetailsFragment {
+//        return VideoDetailsFragment()
+//    }
+//    @Singleton
+//    @Provides
+//    fun provideFragmentPagerAdapter( videoDetailsFragment: VideoDetailsFragment): FragmentManager {
+//        return videoDetailsFragment.childFragmentManager
+//    }
+//    @Singleton
+//    @Provides
+//    fun provideMoviePagerAdapter( fm:FragmentManager): MoviePagerAdapter {
+//        return MoviePagerAdapter(fm)
+//    }
 
 }

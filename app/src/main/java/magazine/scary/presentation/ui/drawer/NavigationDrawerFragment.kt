@@ -1,4 +1,4 @@
-package magazine.scary
+package magazine.scary.presentation.ui.drawer
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.pixabay.utils.tools.AppUtils
 import kotlinx.android.synthetic.main.fragment_navigation_drawer.*
+import magazine.scary.R
 import magazine.scary.domain.entities.MenuItemTypeEnum
 import magazine.scary.domain.entities.MenuModel
 import magazine.scary.presentation.ui.container.DrawerMenuAdapter

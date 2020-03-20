@@ -14,6 +14,7 @@ data class MovieModel(
     val name: String,
     val objectId: String,
     val ownerId: String?,
+    val themoviedb_id: String?,
     val rate: String,
     val small_image: String,
     val thriller: String?,

@@ -4,7 +4,7 @@
         android:id="@+id/movieDetails"
         android:title="Details" />
     <item
-        android:id="@+id/feedbacks"
-        android:title="Feedbacks" />
+        android:id="@+id/posters"
+        android:title="Posters" />
 
 </menu>
