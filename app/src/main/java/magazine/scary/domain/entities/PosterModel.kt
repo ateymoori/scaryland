@@ -1,7 +1,7 @@
 package magazine.scary.domain.entities
 
 data class PosterModel(
-    val aspect_ratio: Double?,
+    val aspect_ratio: Double,
     val file_path: String?,
     val height: Int?,
     val iso_639_1: String?,
@@ -9,3 +9,10 @@ data class PosterModel(
     val vote_count: Int?,
     val width: Int?
 )
+
+fun PosterModel.mapToImageModel(): ImageModel {
+
+    return ImageModel(
+        largeImageURL = file_path
+    )
+}

@@ -11,7 +11,6 @@ import com.pixabay.utils.tools.listen
 import com.pixabay.utils.views.RateView
 import kotlinx.android.synthetic.main.movie_horizontal_item.view.*
 import magazine.scary.R
-import magazine.scary.domain.entities.ImageModel
 import magazine.scary.domain.entities.MovieModel
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
@@ -50,12 +49,12 @@ class MoviesHorizontalAdapter @Inject constructor() :
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val item = movies[position]
         imageLoader.load(
-            url = item.small_image,
+            url = item.portrait_image,
             imageView = holder.image
         )
 
-        holder.rate.rate = item.rate
-        holder.movieTitle.text = item.name
+        holder.rate.rate = item.imdb.toString()
+        holder.movieTitle.text = item.title
 
 
     }

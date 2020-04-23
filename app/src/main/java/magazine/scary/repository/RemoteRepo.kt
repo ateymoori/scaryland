@@ -1,5 +1,7 @@
 package magazine.scary.repository
 
+import magazine.scary.domain.entities.MovieModel
+import magazine.scary.domain.entities.ThrillerModel
 import magazine.scary.repository.rest.RestService
 import javax.inject.Inject
 
@@ -11,14 +13,19 @@ constructor(private val repoService: RestService) {
             word
         )
 
-    suspend fun getMovies() =
-        repoService.getMovies()
+    suspend fun getMovies(): List<MovieModel> {
+        return repoService.getMovies()
+    }
+
+    suspend fun getThrillers(id: String): List<ThrillerModel> {
+        return repoService.getThrillers(id)
+    }
 
     suspend fun getStories() =
         repoService.getStories()
 
-    suspend fun getStory(fileAddress: String) =
-        repoService.getStory(fileAddress)
+    suspend fun getStory(id: String) =
+        repoService.getStory(id)
 
     suspend fun getMoviePosters(movieID: String) =
         repoService.getMoviePosters(movieID)

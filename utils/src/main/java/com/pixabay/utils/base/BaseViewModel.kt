@@ -17,7 +17,7 @@ abstract class BaseViewModel : ViewModel() {
 //            this.mNavigator = WeakReference(navigator)
 //        }
 
-    open fun onViewCreated() {}
+    open fun onViewCreated( ) {}
     override fun onCleared() {
         compositeDisposable.dispose()
         super.onCleared()

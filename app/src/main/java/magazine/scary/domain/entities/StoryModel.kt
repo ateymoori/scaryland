@@ -6,14 +6,15 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class StoryModel(
-    val ___class: String,
-    val content_file: String,
-    val created: Long,
-    val image: String,
-    val objectId: String,
-    val ownerId: String?,
-    val reading_time: String?,
+    val id: Long,
     val title: String,
     val author: AuthorModel?,
-    val updated: Long
-): Parcelable
+    val content: String? = null,
+    val image: String,
+    val mp3_file: String? = null,
+    val reading_mintues: Long?
+) : Parcelable
+
+
+
+

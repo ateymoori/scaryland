@@ -49,10 +49,10 @@ class MoviesListAdapter @Inject constructor() :
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val item = movies[position]
         imageLoader.load(
-            url = item.wide_image,
+            url = item.landscape_image,
             imageView = holder.image
         )
-        holder.name.text = "${item.name} (${item.year})"
+        holder.name.text = "${item.title} 00000000"
     }
 
     override fun getItemCount(): Int {

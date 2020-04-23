@@ -21,7 +21,7 @@ import com.pixabay.utils.views.ExpandedBottomSheetDialog
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_translate.*
 import kotlinx.android.synthetic.main.fragment_translate.back
-import kotlinx.android.synthetic.main.fragment_video_details.*
+import kotlinx.android.synthetic.main.fragment_movie_details.*
 import magazine.scary.R
 import magazine.scary.tools.utils.Cons
 import org.json.JSONArray

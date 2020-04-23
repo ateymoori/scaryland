@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgColorDark">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:background="@color/bgColorDark">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/startGuideLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.025" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/endGuideLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.975" />
+
+            <RelativeLayout
+                android:id="@+id/back"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/circle_black"
+                android:elevation="@dimen/_100sdp"
+                android:padding="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_left"
+                    android:tint="@color/white" />
+            </RelativeLayout>
+
+
+            <ImageView
+                android:id="@+id/poster"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_180sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/story"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.pixabay.utils.views.MyTextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:text="Name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toStartOf="@+id/endGuideLine"
+                app:layout_constraintStart_toEndOf="@+id/relativeLayout"
+                app:layout_constraintTop_toBottomOf="@+id/poster"
+                app:textType="BOLD" />
+
+            <com.pixabay.utils.views.MyTextView
+                android:id="@+id/genres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginEnd="8dp"
+                android:text="Fantasy/Horror"
+                android:textColor="@color/almostWhite"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toStartOf="@+id/endGuideLine"
+                app:layout_constraintStart_toEndOf="@+id/relativeLayout"
+                app:layout_constraintTop_toBottomOf="@+id/name" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/name"
+                app:layout_constraintStart_toStartOf="@+id/name"
+                app:layout_constraintTop_toBottomOf="@+id/genres">
+
+                <com.pixabay.utils.views.MyTextView
+                    android:id="@+id/rotten_tomato"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="86%"
+                    android:textColor="@color/almostWhite"
+                    android:textSize="@dimen/_11ssp" />
+
+                <com.pixabay.utils.views.MyTextView
+                    android:id="@+id/imdb"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="7.4/10"
+                    android:textColor="@color/almostWhite"
+                    android:textSize="@dimen/_11ssp" />
+
+                <com.pixabay.utils.views.MyTextView
+                    android:id="@+id/runTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2h 30m"
+                    android:textColor="@color/almostWhite"
+                    android:textSize="@dimen/_11ssp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_125sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="168dp"
+                android:background="@color/transparent"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@+id/startGuideLine"
+                app:layout_constraintTop_toTopOf="@+id/poster">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_4sdp"
+                    android:background="@color/transparent"
+                    android:elevation="@dimen/_6sdp"
+                    app:cardCornerRadius="@dimen/_2sdp"
+                    app:cardElevation="@dimen/_8sdp">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:elevation="@dimen/_3sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/girl"
+                        app:riv_border_color="#AB242A38"
+                        app:riv_border_width="0.1dp"
+                        app:riv_corner_radius="@dimen/_2sdp" />
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/_12sdp"
+                app:layout_constraintEnd_toStartOf="@+id/endGuideLine"
+                app:layout_constraintStart_toStartOf="@+id/startGuideLine"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+                <com.pixabay.utils.views.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Story"
+                    android:textColor="@color/almostWhite" />
+
+                <com.pixabay.utils.views.MyTextView
+                    android:id="@+id/content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:text="test"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_9ssp" />
+
+
+                <com.pixabay.utils.views.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Thrillers"
+                    android:textColor="@color/almostWhite" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/thrillersList"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/thriller_item" />
+
+
+                <com.pixabay.utils.views.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Posters"
+                    android:textColor="@color/almostWhite" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/postersList"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_140sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/image_portrait_item" />
+
+
+                <com.pixabay.utils.views.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Images"
+                    android:textColor="@color/almostWhite" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/imagesList"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_140sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/image_portrait_item" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

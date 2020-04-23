@@ -1,17 +1,14 @@
 package magazine.scary.tools.di.modules
 
-import androidx.fragment.app.FragmentManager
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import magazine.scary.MovieDescriptionFragment
 import magazine.scary.presentation.ui.drawer.NavigationDrawerFragment
 import magazine.scary.presentation.ui.translate.TranslateFragment
 import magazine.scary.presentation.ui.video_viewer.VideoViewerFragment
 import magazine.scary.presentation.ui.dashboard.DashboardFragment
 import magazine.scary.presentation.ui.image_detail.ImageViewerFragment
 import magazine.scary.presentation.ui.images_list.ImagesListFragment
-import magazine.scary.presentation.ui.movie_detail.VideoDetailsFragment
-import magazine.scary.presentation.ui.movie_posters.MoviePostersFragment
+import magazine.scary.presentation.ui.movie_detail.MovieDetailsFragment
 import magazine.scary.presentation.ui.movies_list.MoviesListFragment
 import magazine.scary.presentation.ui.splash.SplashScreenFragment
 import magazine.scary.presentation.ui.stories_list.StoryListFragment
@@ -38,7 +35,7 @@ abstract class FragmentModule {
     internal abstract fun contributeStoryReaderFragment(): StoryReaderFragment
 
     @ContributesAndroidInjector
-    internal abstract fun contributeVideoDetailFragment(): VideoDetailsFragment
+    internal abstract fun contributeVideoDetailFragment(): MovieDetailsFragment
 
     @ContributesAndroidInjector
     internal abstract fun contributeStoriesListFragment(): StoryListFragment
@@ -51,11 +48,5 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeDrawerFragment(): NavigationDrawerFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun contributePostersFragment(): MoviePostersFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun contributeMovieDescriptionFragment(): MovieDescriptionFragment
 
 }

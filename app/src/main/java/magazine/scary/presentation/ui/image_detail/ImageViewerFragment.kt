@@ -56,6 +56,19 @@ class ImageViewerFragment : Fragment() {
         viewsCount.setCount(item.views)
         favoritesCount.setCount(item.favorites)
 
+        if (item.favorites == null)
+            favoritesCount.visibility = View.GONE
+
+        if (item.views == null)
+            viewsCount.visibility = View.GONE
+
+        if (item.user == null)
+            username.visibility = View.GONE
+
+        if (item.userImageURL == null)
+            avatar.visibility = View.GONE
+
+
     }
 
     private fun setWallpaper() {

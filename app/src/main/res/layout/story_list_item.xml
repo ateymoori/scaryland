@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_160sdp"
+    android:layout_height="@dimen/_130sdp"
     android:layout_gravity="center"
     android:layout_marginEnd="@dimen/_3sdp"
     android:background="@color/transparent"
@@ -49,12 +49,29 @@
         android:elevation="@dimen/_101sdp"
         android:gravity="center"
         android:text="15 Mins"
+        android:visibility="gone"
         android:textSize="@dimen/_7ssp"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="@+id/cardView"
         />
+    <RelativeLayout
+        android:layout_width="@dimen/_22sdp"
+        android:id="@+id/hasAudio"
+        android:background="@drawable/time_shape"
+        android:layout_height="@dimen/_16sdp"
+        android:elevation="@dimen/_101sdp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView">
 
+        <ImageView
+            android:layout_width="@dimen/_12sdp"
+            android:layout_centerInParent="true"
+            android:layout_height="@dimen/_12sdp"
+            app:tint="@color/white"
+            android:src="@drawable/ic_audio"/>
+    </RelativeLayout>
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/avatar"

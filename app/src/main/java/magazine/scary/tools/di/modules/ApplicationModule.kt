@@ -1,12 +1,9 @@
 package magazine.scary.tools.di.modules
 
 import android.util.Log
-import androidx.fragment.app.FragmentManager
 import com.pixabay.utils.di.RetrofitServiceGenerator
 import dagger.Module
 import dagger.Provides
-import magazine.scary.presentation.ui.movie_detail.VideoDetailsFragment
-import magazine.scary.presentation.ui.movie_posters.MoviePagerAdapter
 import magazine.scary.repository.rest.RestService
 import magazine.scary.tools.utils.Cons
 import okhttp3.OkHttpClient
@@ -55,8 +52,8 @@ open class ApplicationModule {
     fun provedHttpLoggingInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
             override fun log(message: String) {
-               //  Logger.d(message)
-                Log.d("okhttp", message)
+                //   Logger.d(message)
+              Log.d("okhttp", message)
             }
         })
         interceptor.level = HttpLoggingInterceptor.Level.BODY

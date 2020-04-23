@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.pixabay.utils.tools.listen
-import kotlinx.android.synthetic.main.image_horizontal_item.view.*
+import kotlinx.android.synthetic.main.image_portrait_item.view.*
 import magazine.scary.R
 import magazine.scary.domain.entities.ImageModel
 import magazine.scary.tools.utils.ImageLoader
@@ -25,7 +25,7 @@ class ImagesHorizontalAdapter @Inject constructor() :
         ctx = parent.context
         return Holder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.image_horizontal_item,
+                R.layout.image_portrait_item,
                 parent,
                 false
             )

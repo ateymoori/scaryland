@@ -60,12 +60,15 @@
     </fragment>
     <fragment
         android:id="@+id/videoDetailsFragment"
-        android:name="magazine.scary.presentation.ui.movie_detail.VideoDetailsFragment"
+        android:name="magazine.scary.presentation.ui.movie_detail.MovieDetailsFragment"
         android:label="fragment_video_details"
-        tools:layout="@layout/fragment_video_details" >
+        tools:layout="@layout/fragment_movie_details" >
         <action
             android:id="@+id/action_videoDetailsFragment_to_videoViewerFragment"
             app:destination="@id/videoViewerFragment" />
+        <action
+            android:id="@+id/action_videoDetailsFragment_to_imageViewerFragment"
+            app:destination="@id/imageViewerFragment" />
     </fragment>
     <fragment
         android:id="@+id/storyReaderFragment"
@@ -100,18 +103,4 @@
         android:name="magazine.scary.presentation.ui.drawer.NavigationDrawerFragment"
         android:label="fragment_navigation_drawer"
         tools:layout="@layout/fragment_navigation_drawer" />
-    <fragment
-        android:id="@+id/moviePostersFragment"
-        android:name="magazine.scary.presentation.ui.movie_posters.MoviePostersFragment"
-        android:label="fragment_movie_posters"
-        tools:layout="@layout/fragment_movie_posters" >
-        <action
-            android:id="@+id/action_moviePostersFragment_to_imageViewerFragment"
-            app:destination="@id/imageViewerFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/movieDescriptionFragment"
-        android:name="magazine.scary.MovieDescriptionFragment"
-        android:label="fragment_movie_description"
-        tools:layout="@layout/fragment_movie_description" />
 </navigation>

@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pixabay.utils.tools.listen
 import com.pixabay.utils.tools.log
-import kotlinx.android.synthetic.main.image_horizontal_item.view.*
-import kotlinx.android.synthetic.main.image_horizontal_item.view.image
+import kotlinx.android.synthetic.main.image_portrait_item.view.*
+import kotlinx.android.synthetic.main.image_portrait_item.view.image
 import kotlinx.android.synthetic.main.story_horizontal_item.view.*
 import magazine.scary.R
 import magazine.scary.domain.entities.ImageModel
@@ -61,8 +61,13 @@ class StoriesHorizontalAdapter @Inject constructor() :
             imageView = holder.avatar
         )
         holder.title.text = item.title
-        holder.author.text = item.author?.name
-        holder.readingTime.text = "${item.reading_time}"
+        holder.author.text = item.author?.name_family
+        holder.readingTime.text = "${item.reading_mintues} Min"
+
+        if (item.mp3_file == null) {
+            holder.hasAudio.visibility = View.GONE
+        } else
+            holder.hasAudio.visibility = View.VISIBLE
     }
 
     override fun getItemCount(): Int {
@@ -75,6 +80,7 @@ class StoriesHorizontalAdapter @Inject constructor() :
         val title: TextView = view.title
         val author: TextView = view.author
         val readingTime: TextView = view.readingTime
+        val hasAudio: View = view.hasAudio
     }
 
 }

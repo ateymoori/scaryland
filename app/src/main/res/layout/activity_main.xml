@@ -6,17 +6,156 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_graph" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/nav_graph" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/musicPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_56sdp"
+            android:visibility="gone"
+            android:elevation="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <View
+                android:id="@+id/frame"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:background="#E6FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.warkiz.widget.IndicatorSeekBar
+                android:id="@+id/musicSeekBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:isb_clear_default_padding="true"
+                app:isb_indicator_color="@color/grayLight"
+                app:isb_indicator_text_color="@color/orange"
+                app:isb_indicator_text_size="18sp"
+                app:isb_max="100"
+                app:isb_min="0"
+                app:isb_only_thumb_draggable="false"
+                app:isb_progress="1"
+                app:isb_seek_smoothly="true"
+                app:isb_show_indicator="rounded_rectangle"
+                app:isb_show_tick_marks_type="oval"
+                app:isb_show_tick_texts="true"
+                app:isb_thumb_color="@color/orange"
+                app:isb_thumb_size="12dp"
+                app:isb_tick_marks_drawable="@mipmap/ic_launcher"
+                app:isb_tick_marks_size="13dp"
+                app:isb_tick_texts_color="@color/orange"
+                app:isb_tick_texts_size="15sp"
+                app:isb_ticks_count="0"
+                app:isb_track_background_color="@color/grayLight"
+                app:isb_track_background_size="3dp"
+                app:isb_track_progress_color="@color/orange"
+                app:isb_track_progress_size="4dp"
+                app:layout_constraintBottom_toTopOf="@id/frame"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/frame" />
+
+            <ImageView
+                android:id="@+id/audioImage"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_margin="@dimen/_10sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/black_cat"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/frame" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/audioImage"
+                app:layout_constraintStart_toEndOf="@+id/audioImage"
+                app:layout_constraintTop_toTopOf="@+id/audioImage">
+
+
+                <com.pixabay.utils.views.MyTextView
+                    android:id="@+id/audioTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="The Black Cat"
+                    android:textColor="@color/grayDarkest"
+                    android:textSize="@dimen/_13ssp" />
+
+                <com.pixabay.utils.views.MyTextView
+                    android:id="@+id/audioSubTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edgar Allen Poe"
+                    android:textColor="@color/grayDark"
+                    android:textSize="@dimen/_9ssp" />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/stop"
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:layout_marginEnd="24dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_stop"
+                app:layout_constraintBottom_toBottomOf="@+id/audioImage"
+                app:layout_constraintEnd_toStartOf="@id/playPause"
+                app:layout_constraintTop_toTopOf="@+id/audioImage" />
+
+            <ImageView
+                android:id="@+id/playPause"
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:layout_marginEnd="48dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_play"
+                app:layout_constraintBottom_toBottomOf="@+id/audioImage"
+                app:layout_constraintEnd_toEndOf="@+id/frame"
+                app:layout_constraintTop_toTopOf="@+id/audioImage" />
+
+            <com.pixabay.utils.views.MyTextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
+                android:includeFontPadding="false"
+                android:text="22:13"
+                android:textColor="@color/grayDark"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"

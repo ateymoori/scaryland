@@ -9,7 +9,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import magazine.scary.presentation.ui.dashboard.DashboardViewModel
 import magazine.scary.presentation.ui.images_list.ImagesListViewModel
-import magazine.scary.presentation.ui.movie_posters.MoviePostersViewModel
+import magazine.scary.presentation.ui.movie_detail.MovieDetailsViewModel
 import magazine.scary.presentation.ui.movies_list.MoviesListViewModel
 import magazine.scary.presentation.ui.stories_list.StoriesListViewModel
 import magazine.scary.presentation.ui.story_detail.StoryDetailReaderViewModel
@@ -54,10 +54,10 @@ internal abstract class ViewModelModule {
     @ViewModelKey(TranslateViewModel::class)
     internal abstract fun translateVM(viewModel: TranslateViewModel): ViewModel
 
-
     @Binds
     @IntoMap
-    @ViewModelKey(MoviePostersViewModel::class)
-    internal abstract fun moviePostersVM(viewModel: MoviePostersViewModel): ViewModel
+    @ViewModelKey(MovieDetailsViewModel::class)
+    internal abstract fun movieDetailsVM(viewModel: MovieDetailsViewModel): ViewModel
+
 
 }

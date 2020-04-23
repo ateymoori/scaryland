@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pixabay.utils.tools.listen
 import kotlinx.android.synthetic.main.story_horizontal_item.view.*
 import magazine.scary.R
-import magazine.scary.domain.entities.MovieModel
 import magazine.scary.domain.entities.StoryModel
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
@@ -59,7 +58,12 @@ class StoriesListAdapter @Inject constructor() :
             imageView = holder.avatar
         )
         holder.title.text = "${item.title}"
-        holder.readingTime.text = "${item.reading_time}"
+        holder.readingTime.text = "${item.reading_mintues}"
+        if (item.mp3_file == null) {
+            holder.hasAudio.visibility = View.GONE
+        } else
+            holder.hasAudio.visibility = View.VISIBLE
+
     }
 
     override fun getItemCount(): Int {
@@ -71,6 +75,7 @@ class StoriesListAdapter @Inject constructor() :
         val avatar: ImageView = view.avatar
         val title: TextView = view.title
         val readingTime: TextView = view.readingTime
+        val hasAudio: View = view.hasAudio
     }
 
 }

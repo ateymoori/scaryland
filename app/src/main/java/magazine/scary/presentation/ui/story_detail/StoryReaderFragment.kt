@@ -11,13 +11,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import com.pixabay.utils.models.Loading
 import com.pixabay.utils.models.Success
+import com.pixabay.utils.rxbus.RxBus
+import com.pixabay.utils.rxbus.RxEvent
 import com.pixabay.utils.tools.AppUtils
 import dagger.android.support.AndroidSupportInjection
+import dm.audiostreamer.AudioStreamingManager
+import dm.audiostreamer.CurrentSessionCallback
+import dm.audiostreamer.MediaMetaData
 import kotlinx.android.synthetic.main.fragment_story_reader.*
 import magazine.scary.R
-import magazine.scary.domain.entities.MovieModel
+import com.pixabay.utils.models.AudioModel
+import com.pixabay.utils.models.AudioStatus
+import com.pixabay.utils.tools.log
 import magazine.scary.domain.entities.StoryModel
-import magazine.scary.presentation.ui.images_list.ImagesListViewModel
 import magazine.scary.tools.utils.Cons
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
@@ -25,7 +31,9 @@ import kotlin.math.max
 import kotlin.math.min
 
 
-class StoryReaderFragment : Fragment() {
+class StoryReaderFragment : Fragment(), CurrentSessionCallback {
+
+    private lateinit var streamingManager: AudioStreamingManager
 
     @Inject
     lateinit var imageLoader: ImageLoader
@@ -57,7 +65,7 @@ class StoryReaderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(StoryDetailReaderViewModel::class.java)
-        viewModel.fileAddress = story.content_file
+        viewModel.id = story.id.toString()
         viewModel.onViewCreated()
         imageLoader.load(
             url = story.image,
@@ -68,7 +76,7 @@ class StoryReaderFragment : Fragment() {
             imageView = avatar
         )
         title.text = story.title
-        author.text = "by ${story.author?.name} "
+        author.text = "by ${story.author?.name_family} "
         back.setOnClickListener { activity?.onBackPressed() }
         share.setOnClickListener {
             AppUtils.shareToMessagingApps(
@@ -78,20 +86,43 @@ class StoryReaderFragment : Fragment() {
             )
             AppUtils.shareToMessagingApps(
                 activity, title = "Hi there!",
-                message = "Install Horror Magazine to read ${story.title} by ${story.author?.name} . \n https://play.google.com/store/apps/details?id=magazine.scary"
+                message = "Install Horror Magazine to read ${story.title} by ${story.author?.name_family} . \n https://play.google.com/store/apps/details?id=magazine.scary"
             )
         }
         observeVM()
         handleSelectText()
+
+
+        //audio
+        play.setOnClickListener {
+            RxBus.publish(
+                RxEvent.AudioPlay(
+                    AudioModel(
+                        storyID = story.id.toString(),
+                        audioURL = story.mp3_file,
+                        image = story.image,
+                        title = story.title,
+                        subTitle = story.author?.name_family
+                    )
+                )
+            )
+            RxBus.publish(
+                RxEvent.AudioControl(
+                    AudioStatus.PLAY
+                )
+            )
+        }
+
     }
+
 
     private fun observeVM() {
         viewModel.storyDetail.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Success -> {
                     loading.visibility = View.GONE
-                    content.text = (it.data as String)
-                    //content.setup(content.text)
+                    story = it.data as StoryModel
+                    showData(story)
                 }
                 is Loading -> {
                     loading.visibility = View.VISIBLE
@@ -102,6 +133,14 @@ class StoryReaderFragment : Fragment() {
             }
         })
 
+    }
+
+    private fun showData(story: StoryModel) {
+        content.text = story.content
+        if (story.mp3_file == null) {
+            play.visibility = View.GONE
+        } else
+            play.visibility = View.VISIBLE
     }
 
 
@@ -135,7 +174,7 @@ class StoryReaderFragment : Fragment() {
                             max = max(0, max(selStart, selEnd))
                         }
                         val selectedText = content.text.subSequence(min, max)
-                         translate(selectedText.toString())
+                        translate(selectedText.toString())
                         mode.finish()
                         return true
                     }
@@ -148,11 +187,30 @@ class StoryReaderFragment : Fragment() {
         }
     }
 
-    private fun translate(word:String){
+    private fun translate(word: String) {
         findNavController(content).navigate(
             R.id.action_storyReaderFragment_to_translateFragment
             ,
             bundleOf(Cons.ITEM_BUNDLE to word)
         )
+    }
+
+    override fun currentSeekBarPosition(progress: Int) {
+
+    }
+
+    override fun playSongComplete() {
+    }
+
+    override fun playNext(indexP: Int, currentAudio: MediaMetaData?) {
+    }
+
+    override fun updatePlaybackState(state: Int) {
+    }
+
+    override fun playCurrent(indexP: Int, currentAudio: MediaMetaData?) {
+    }
+
+    override fun playPrevious(indexP: Int, currentAudio: MediaMetaData?) {
     }
 }

@@ -18,21 +18,21 @@ class StoryDetailReaderViewModel @Inject constructor(
     private val mainRepo: MainRepo
 ) : BaseViewModel() {
 
-    lateinit var fileAddress: String
+    lateinit var id: String
 
     val storyDetail = MutableLiveData<Response<Any?>>()
 
     override fun onViewCreated() {
         super.onViewCreated()
-        getStory(fileAddress)
+        getStory(id)
     }
 
 
-    private fun getStory(fileAddress: String) {
+    private fun getStory(id: String) {
         viewModelScope.launch {
             storyDetail.value = Loading(null)
             storyDetail.value = withContext(Dispatchers.IO) {
-                Success(data = mainRepo.getStory(fileAddress).string().replace(".", ".\n"))
+                Success(data = mainRepo.getStory(id) )
             }
         }
     }

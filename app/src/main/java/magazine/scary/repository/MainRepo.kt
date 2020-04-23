@@ -3,8 +3,6 @@ package magazine.scary.repository
 import magazine.scary.domain.entities.ImageModel
 import magazine.scary.domain.entities.MovieModel
 import magazine.scary.domain.entities.StoryModel
-import magazine.scary.repository.RemoteRepo
-import okhttp3.ResponseBody
 import javax.inject.Inject
 
 class MainRepo @Inject
@@ -32,8 +30,11 @@ constructor(private val remoteRepo: RemoteRepo) {
         return remoteRepo.getStories()
     }
 
-    suspend fun getStory(fileAddress: String) =
-        remoteRepo.getStory(fileAddress)
+    suspend fun getStory(id: String) =
+        remoteRepo.getStory(id)
+
+    suspend fun getThrillers(id: String) =
+        remoteRepo.getThrillers(id)
 
 
     suspend fun getMoviePosters(movieID: String) =

@@ -3,7 +3,8 @@
     package="magazine.scary">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+
     <application
         android:name=".tools.utils.MyApplication"
         android:allowBackup="true"
@@ -12,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".TestActivity">
+
+        </activity>
         <activity android:name=".presentation.ui.container.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="JW_LICENSE_KEY"
+            android:value="hNu50tqDsdoPuMbz311klwW30sBAi3SrHoIWHINJDMkGEYZh" />
     </application>
 
 </manifest>
