@@ -155,6 +155,23 @@
         app:layout_constraintEnd_toStartOf="@+id/endGuideLine"
         app:layout_constraintTop_toBottomOf="@+id/avatar" />
 
+    <Button
+        android:id="@+id/download"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_22sdp"
+        android:layout_marginBottom="@dimen/_32sdp"
+        android:background="@drawable/white_border"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:gravity="center"
+        android:paddingStart="@dimen/_4sdp"
+        android:paddingEnd="@dimen/_4sdp"
+        android:text="Download"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_8ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/setWallpaper"
+        app:layout_constraintTop_toBottomOf="@+id/avatar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

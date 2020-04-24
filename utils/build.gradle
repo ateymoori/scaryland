@@ -97,5 +97,5 @@ dependencies {
 
     api 'com.github.dibakarece:DMAudioStreamer:v1.0.5'
 
-
+    api 'com.karumi:dexter:6.1.0'
 }

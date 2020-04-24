@@ -52,7 +52,7 @@ class MoviesListAdapter @Inject constructor() :
             url = item.landscape_image,
             imageView = holder.image
         )
-        holder.name.text = "${item.title} 00000000"
+        holder.name.text = "${item.title} (${item.release_date.substring(0, 4)})"
     }
 
     override fun getItemCount(): Int {
