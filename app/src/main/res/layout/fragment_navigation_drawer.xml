@@ -7,6 +7,47 @@
     android:layout_gravity="end"
     android:background="@color/almostBlack">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/avatar"
+            android:layout_width="@dimen/_44sdp"
+            android:layout_height="@dimen/_44sdp"
+            app:riv_oval="true" />
+
+        <com.pixabay.utils.views.MyTextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:textSize="@dimen/_9ssp"
+            android:textColor="@color/white"/>
+        <ImageView
+            android:id="@+id/sign_in_button"
+            android:src="@drawable/ic_google"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp" />
+
+        <com.pixabay.utils.views.MyTextView
+            android:id="@+id/logout"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:text="LogOut"
+            android:textSize="@dimen/_9ssp"
+            android:textColor="@color/redMiddle"
+            />
+    </LinearLayout>
+
     <ListView
         android:id="@+id/menuList"
         android:layout_width="match_parent"

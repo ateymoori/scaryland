@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.pixabay.utils.models.UserModel
 import java.text.DecimalFormat
 import kotlin.math.abs
 import kotlin.math.log10
@@ -58,4 +60,15 @@ fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
             afterTextChanged.invoke(editable.toString())
         }
     })
+}
+
+fun GoogleSignInAccount.userModel(): UserModel {
+    return UserModel(
+        name = this.displayName,
+        avatar = this.photoUrl.toString(),
+        family = this.familyName,
+        givenName = this.givenName,
+        email = this.email,
+        id = this.id
+    )
 }
