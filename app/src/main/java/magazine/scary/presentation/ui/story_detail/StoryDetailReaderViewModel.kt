@@ -22,18 +22,18 @@ class StoryDetailReaderViewModel @Inject constructor(
 
     override fun onViewCreated() {
         super.onViewCreated()
-        getStory(id)
+       // getStory(id)
     }
 
 
-    private fun getStory(id: String) {
-        viewModelScope.launch {
-            storyDetail.value = Loading(null)
-            storyDetail.value = withContext(Dispatchers.IO) {
-                Success(data = mainRepo.getStory(id) )
-            }
-        }
-    }
+//    private fun getStory(id: String) {
+//        viewModelScope.launch {
+//            storyDetail.value = Loading(null)
+//            storyDetail.value = withContext(Dispatchers.IO) {
+//                Success(data = mainRepo.getStory(id) )
+//            }
+//        }
+//    }
 
 
 }

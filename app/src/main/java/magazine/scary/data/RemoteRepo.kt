@@ -24,8 +24,8 @@ constructor(private val repoService: Api) {
     suspend fun getStories() =
         repoService.getStories()
 
-    suspend fun getStory(id: String) =
-        repoService.getStory(id)
+//    suspend fun getStory(id: String) =
+//        repoService.getStory(id)
 
 //    suspend fun getMoviePosters(movieID: String) =
 //        repoService.getMoviePosters(movieID)

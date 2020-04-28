@@ -17,6 +17,7 @@ import magazine.scary.R
 import magazine.scary.domain.entities.ImageModel
 import magazine.scary.data.entities.MovieData
 import magazine.scary.domain.entities.MovieEntity
+import magazine.scary.domain.entities.StoryEntity
 import magazine.scary.domain.entities.StoryModel
 import magazine.scary.presentation.ui.container.MainActivity
 import magazine.scary.tools.utils.Cons
@@ -72,6 +73,11 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
             it.data.let { moviesAdapter.movies = it }
         })
 
+        viewModel.storiesViewState.observe(viewLifecycleOwner, Observer {
+            swipeLayout.isRefreshing = it.showLoading
+            it.data.let { storiesAdapter.stories = it }
+        })
+
         viewModel.imagesResults.observe(viewLifecycleOwner, Observer {
             swipeLayout.isRefreshing = false
             when (it) {
@@ -82,15 +88,15 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
             }
         })
 
-        viewModel.storiesResults.observe(viewLifecycleOwner, Observer {
-            swipeLayout.isRefreshing = false
-            when (it) {
-                is Success -> storiesAdapter.stories =
-                    (it.data as List<StoryModel>)
-                else -> {
-                }
-            }
-        })
+//        viewModel.storiesResults.observe(viewLifecycleOwner, Observer {
+//            swipeLayout.isRefreshing = false
+//            when (it) {
+//                is Success -> storiesAdapter.stories =
+//                    (it.data as List<StoryModel>)
+//                else -> {
+//                }
+//            }
+//        })
 
 
         viewAllImages.setOnClickListener {
@@ -124,7 +130,7 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
     }
 
 
-    override fun onStoryClicked(story: StoryModel) {
+    override fun onStoryClicked(story: StoryEntity?) {
         findNavController(moviesList).navigate(
             R.id.action_dashboardFragment_to_storyReaderFragment
             ,

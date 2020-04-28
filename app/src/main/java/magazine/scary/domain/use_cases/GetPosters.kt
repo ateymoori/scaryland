@@ -26,7 +26,7 @@ class GetPosters(
     override fun createObservable(data: Map<String, Any>?): Observable<List<PosterEntity>> {
         val movieID = data?.get(PARAM_MOVIE_ID) as? Int
         movieID?.let {
-            return moviesRepository.getPosters(movieID)
+            return moviesRepository.getPosters(it)
 
         } ?: return Observable.error { IllegalArgumentException("MovieId must be provided.") }
     }

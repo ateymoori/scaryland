@@ -1,4 +1,4 @@
-package magazine.scary.data.repositories
+package magazine.scary.data.repositories.movie
 
 import io.reactivex.Observable
 import magazine.scary.data.api.Api
@@ -7,7 +7,6 @@ import magazine.scary.data.mappers.MovieDataEntityMapper
 import magazine.scary.data.mappers.PosterDataEntityMapper
 import magazine.scary.domain.entities.MovieEntity
 import magazine.scary.domain.entities.PosterEntity
-import javax.inject.Inject
 
 class MoviesRemoteRepository
 constructor(

@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.image_portrait_item.view.image
 import kotlinx.android.synthetic.main.story_horizontal_item.view.*
 import magazine.scary.R
 import magazine.scary.domain.entities.ImageModel
+import magazine.scary.domain.entities.StoryEntity
 import magazine.scary.domain.entities.StoryModel
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
@@ -35,43 +36,43 @@ class StoriesHorizontalAdapter @Inject constructor() :
                 false
             )
         ).listen { pos, _ ->
-            stories[pos].let { storyClickListener.onStoryClicked(it) }
+            stories?.get(pos).let { storyClickListener.onStoryClicked(it) }
         }
     }
 
-    var stories = listOf<StoryModel>()
+    var stories: List<StoryEntity>? = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     interface StoryClickListener {
-        fun onStoryClicked(story: StoryModel)
+        fun onStoryClicked(story: StoryEntity?)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val item = stories[position]
+        val item = stories?.get(position)
         imageLoader.load(
-            url = item.image,
+            url = item?.image,
             imageView = holder.image
         )
 
         imageLoader.load(
-            url = item.author?.image,
+            url = item?.author_image,
             imageView = holder.avatar
         )
-        holder.title.text = item.title
-        holder.author.text = item.author?.name_family
-        holder.readingTime.text = "${item.reading_mintues} Min"
+        holder.title.text = item?.title
+        holder.author.text = item?.author_name_family
+        holder.readingTime.text = "${item?.reading_minutes} Min"
 
-        if (item.mp3_file == null) {
+        if (item?.mp3_file == null) {
             holder.hasAudio.visibility = View.GONE
         } else
             holder.hasAudio.visibility = View.VISIBLE
     }
 
     override fun getItemCount(): Int {
-        return stories.size
+        return stories?.size ?: 0
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {

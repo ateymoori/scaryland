@@ -12,12 +12,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import magazine.scary.domain.use_cases.GetMovies
+import magazine.scary.domain.use_cases.GetStories
 import magazine.scary.tools.utils.Cons
 import javax.inject.Inject
 
 class DashboardViewModel @Inject constructor(
     private val mainRepo: MainRepo,
-    private val getMovies: GetMovies
+    private val getMovies: GetMovies,
+    private val getStories: GetStories
 
 ) : BaseViewModel() {
 
@@ -27,30 +29,24 @@ class DashboardViewModel @Inject constructor(
 
 
     val moviesViewState: MutableLiveData<MoviesListViewState> = MutableLiveData()
+    val storiesViewState: MutableLiveData<StoriesListViewState> = MutableLiveData()
 
     init {
         moviesViewState.value = MoviesListViewState()
+        storiesViewState.value = StoriesListViewState()
     }
 
     override fun onViewCreated() {
         super.onViewCreated()
 
         getMovies()
-
+        getStories()
 
 //        getImages(Cons.DEFAULT_SEARCH_WORD)
 //        getVideos()
 //        getStories()
     }
 
-    private fun getImages(word: String) {
-        viewModelScope.launch {
-            imagesResults.value = Loading(null)
-            imagesResults.value = withContext(Dispatchers.IO) {
-                Success(data = mainRepo.getImages(word))
-            }
-        }
-    }
 
     private fun getMovies() {
         compositeDisposable.add(
@@ -63,14 +59,37 @@ class DashboardViewModel @Inject constructor(
         )
     }
 
+
     private fun getStories() {
+        compositeDisposable.add(
+            getStories.observable().subscribe({
+                storiesViewState.value =
+                    storiesViewState.value?.copy(showLoading = false, data = it)
+            },
+                {
+                    storiesViewState.value = storiesViewState.value?.copy(showLoading = false)
+                })
+        )
+    }
+
+
+    private fun getImages(word: String) {
         viewModelScope.launch {
-            storiesResults.value = Loading(null)
-            storiesResults.value = withContext(Dispatchers.IO) {
-                Success(data = mainRepo.getStories())
+            imagesResults.value = Loading(null)
+            imagesResults.value = withContext(Dispatchers.IO) {
+                Success(data = mainRepo.getImages(word))
             }
         }
     }
+
+//    private fun getStories() {
+//        viewModelScope.launch {
+//            storiesResults.value = Loading(null)
+//            storiesResults.value = withContext(Dispatchers.IO) {
+//                Success(data = mainRepo.getStories())
+//            }
+//        }
+//    }
 
 
 //    private fun search(word:String): Flow<List<ImageModel>> = flow {

@@ -3,6 +3,7 @@ package magazine.scary.data.api
 import io.reactivex.Observable
 import magazine.scary.data.entities.MovieData
 import magazine.scary.data.entities.PosterData
+import magazine.scary.data.entities.StoryData
 import magazine.scary.domain.entities.*
 import okhttp3.ResponseBody
 import retrofit2.http.*
@@ -33,18 +34,16 @@ interface Api {
         @Field("q") word: String
     ): ResponseBody
 
+//
+//    @GET("http://amirteymoori.ir/voyager/public/api/stories/")
+//    suspend fun getStories(): List<StoryModel>
 
-
-    @GET("http://amirteymoori.ir/voyager/public/api/stories/")
-    suspend fun getStories(): List<StoryModel>
-
-    @GET("http://amirteymoori.ir/voyager/public/api/stories/{id}")
-    suspend fun getStory(@Path("id") id: String): StoryModel
+//    @GET("http://amirteymoori.ir/voyager/public/api/stories/{id}")
+//    suspend fun getStory(@Path("id") id: String): StoryModel
 
 
     @GET("http://amirteymoori.ir/voyager/public/api/movies/thrillers/{id}")
     suspend fun getThrillers(@Path("id") id: String): List<ThrillerModel>
-
 
 
     //clean architecture
@@ -54,4 +53,12 @@ interface Api {
 
     @GET("http://amirteymoori.ir/voyager/public/api/movies")
     fun getMovies(): Observable<List<MovieData>>
+
+    @GET("http://amirteymoori.ir/voyager/public/api/stories/")
+    fun getStories(): Observable<List<StoryData>>
+
+    @GET("http://amirteymoori.ir/voyager/public/api/stories/{id}")
+    fun getStory(@Path("id") id: Int): Observable<StoryData>
+
+
 }

@@ -21,17 +21,17 @@ class StoriesListViewModel @Inject constructor(
 
     override fun onViewCreated() {
         super.onViewCreated()
-        getStories( )
+      //  getStories( )
     }
 
-    private fun getStories( ) {
-        viewModelScope.launch {
-            storiesResults.value = Loading(null)
-            storiesResults.value = withContext(Dispatchers.IO) {
-                Success(data = mainRepo.getStories( ))
-            }
-        }
-    }
+//    private fun getStories( ) {
+//        viewModelScope.launch {
+//            storiesResults.value = Loading(null)
+//            storiesResults.value = withContext(Dispatchers.IO) {
+//                Success(data = mainRepo.getStories( ))
+//            }
+//        }
+//    }
 
 
 }

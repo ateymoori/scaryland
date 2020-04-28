@@ -26,12 +26,12 @@ constructor(private val remoteRepo: RemoteRepo) {
 //        return remoteRepo.getMovies()
 //    }
 
-    suspend fun getStories(): List<StoryModel> {
-        return remoteRepo.getStories()
-    }
-
-    suspend fun getStory(id: String) =
-        remoteRepo.getStory(id)
+//    suspend fun getStories(): List<StoryModel> {
+//        return remoteRepo.getStories()
+//    }
+//
+//    suspend fun getStory(id: String) =
+//        remoteRepo.getStory(id)
 
     suspend fun getThrillers(id: String) =
         remoteRepo.getThrillers(id)
