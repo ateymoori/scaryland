@@ -1,10 +1,13 @@
-package magazine.scary.repository.rest
+package magazine.scary.data.api
 
+import io.reactivex.Observable
+import magazine.scary.data.entities.MovieData
+import magazine.scary.data.entities.PosterData
 import magazine.scary.domain.entities.*
 import okhttp3.ResponseBody
 import retrofit2.http.*
 
-interface RestService {
+interface Api {
 
     @GET("https://pixabay.com/api/?key=14649220-5ae78e4612f86b869152790a4&image_type=photo&per_page=200&orientation=vertical")
     suspend fun getImages(@Query("q") word: String): ResponseModel
@@ -31,25 +34,24 @@ interface RestService {
     ): ResponseBody
 
 
-    @GET("http://amirteymoori.ir/voyager/public/api/movies/posters/{movieID}")
-    suspend fun getMoviePosters(@Path("movieID") movieID: String):  List<PosterModel>
-
 
     @GET("http://amirteymoori.ir/voyager/public/api/stories/")
     suspend fun getStories(): List<StoryModel>
 
     @GET("http://amirteymoori.ir/voyager/public/api/stories/{id}")
-    suspend fun getStory(@Path("id" ) id: String): StoryModel
+    suspend fun getStory(@Path("id") id: String): StoryModel
 
-
-
-    @GET("http://amirteymoori.ir/voyager/public/api/movies")
-    suspend fun getMovies(): List<MovieModel>
 
     @GET("http://amirteymoori.ir/voyager/public/api/movies/thrillers/{id}")
-    suspend fun getThrillers(@Path("id" ) id: String): List<ThrillerModel>
+    suspend fun getThrillers(@Path("id") id: String): List<ThrillerModel>
 
 
-    //https://api.themoviedb.org/3/movie/458723/images?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb
 
+    //clean architecture
+
+    @GET("http://amirteymoori.ir/voyager/public/api/movies/posters/{movieID}")
+    fun getMoviePosters(@Path("movieID") movieID: Int): Observable<List<PosterData>>
+
+    @GET("http://amirteymoori.ir/voyager/public/api/movies")
+    fun getMovies(): Observable<List<MovieData>>
 }

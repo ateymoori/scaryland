@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pixabay.utils.tools.listen
 import kotlinx.android.synthetic.main.image_portrait_item.view.*
 import magazine.scary.R
-import magazine.scary.domain.entities.PosterModel
+import magazine.scary.domain.entities.PosterEntity
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
 
@@ -47,14 +47,14 @@ class PostersHorizontalAdapter @Inject constructor() :
             ItemType.LANDSCAPE.ordinal
     }
 
-    var images: List<PosterModel>? = listOf()
+    var images: List<PosterEntity>? = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     interface ImageClickListener {
-        fun onImageClicked(image: PosterModel)
+        fun onImageClicked(image: PosterEntity)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {

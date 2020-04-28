@@ -2,16 +2,14 @@ package magazine.scary.presentation.ui.translate
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import magazine.scary.repository.MainRepo
+import magazine.scary.data.MainRepo
 import com.pixabay.utils.base.BaseViewModel
 import com.pixabay.utils.models.Loading
 import com.pixabay.utils.models.Response
 import com.pixabay.utils.models.Success
-import com.pixabay.utils.tools.log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import magazine.scary.tools.utils.Cons
 import javax.inject.Inject
 
 class TranslateViewModel @Inject constructor(

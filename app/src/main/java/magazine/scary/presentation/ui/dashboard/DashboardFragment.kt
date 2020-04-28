@@ -15,7 +15,8 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import magazine.scary.R
 import magazine.scary.domain.entities.ImageModel
-import magazine.scary.domain.entities.MovieModel
+import magazine.scary.data.entities.MovieData
+import magazine.scary.domain.entities.MovieEntity
 import magazine.scary.domain.entities.StoryModel
 import magazine.scary.presentation.ui.container.MainActivity
 import magazine.scary.tools.utils.Cons
@@ -38,9 +39,7 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
 
     private lateinit var viewModel: DashboardViewModel
 
-    private val snapList1 = StartSnapHelper()
-    private val snapList2 = StartSnapHelper()
-    private val snapList3 = StartSnapHelper()
+    private val snapList = StartSnapHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,11 +61,12 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
         viewModel.onViewCreated()
 
         imagesList.adapter = imagesAdaptor.also { it.imageClickListener = this }
-        snapList1.attachToRecyclerView(imagesList)
         moviesList.adapter = moviesAdapter.also { it.movieClickListener = this }
         storiesList.adapter = storiesAdapter.also { it.storyClickListener = this }
-        snapList2.attachToRecyclerView(moviesList)
-        snapList3.attachToRecyclerView(storiesList)
+
+        snapList.attachToRecyclerView(imagesList)
+        snapList.attachToRecyclerView(moviesList)
+        snapList.attachToRecyclerView(storiesList)
 
         viewModel.imagesResults.observe(viewLifecycleOwner, Observer {
             swipeLayout.isRefreshing = false
@@ -77,14 +77,9 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
                 }
             }
         })
-        viewModel.moviesResults.observe(viewLifecycleOwner, Observer {
-            swipeLayout.isRefreshing = false
-            when (it) {
-                is Success -> moviesAdapter.movies =
-                    (it.data as List<MovieModel>)
-                else -> {
-                }
-            }
+        viewModel.moviesViewState.observe(viewLifecycleOwner, Observer {
+            swipeLayout.isRefreshing = it.showLoading
+            it.data.let { moviesAdapter.movies = it }
         })
         viewModel.storiesResults.observe(viewLifecycleOwner, Observer {
             swipeLayout.isRefreshing = false
@@ -127,19 +122,20 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
         )
     }
 
-    override fun onMovieClicked(movie: MovieModel) {
-        findNavController(moviesList).navigate(
-            R.id.action_dashboardFragment_to_videoDetailsFragment
-            ,
-            bundleOf(Cons.ITEM_BUNDLE to movie)
-        )
-    }
 
     override fun onStoryClicked(story: StoryModel) {
         findNavController(moviesList).navigate(
             R.id.action_dashboardFragment_to_storyReaderFragment
             ,
             bundleOf(Cons.ITEM_BUNDLE to story)
+        )
+    }
+
+    override fun onMovieClicked(movie: MovieEntity?) {
+        findNavController(moviesList).navigate(
+            R.id.action_dashboardFragment_to_videoDetailsFragment
+            ,
+            bundleOf(Cons.ITEM_BUNDLE to movie)
         )
     }
 

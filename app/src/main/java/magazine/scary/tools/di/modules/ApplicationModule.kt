@@ -4,7 +4,7 @@ import android.util.Log
 import com.pixabay.utils.di.RetrofitServiceGenerator
 import dagger.Module
 import dagger.Provides
-import magazine.scary.repository.rest.RestService
+import magazine.scary.data.api.Api
 import magazine.scary.tools.utils.Cons
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -80,8 +80,8 @@ open class ApplicationModule {
 
     @Singleton
     @Provides
-    fun getMainInterface(retrofit: Retrofit): RestService {
-        return retrofit.create(RestService::class.java)
+    fun getMainInterface(retrofit: Retrofit): Api {
+        return retrofit.create(Api::class.java)
     }
 
 //    @Singleton

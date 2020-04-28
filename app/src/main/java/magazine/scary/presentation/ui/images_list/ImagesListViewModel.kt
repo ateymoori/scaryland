@@ -1,9 +1,8 @@
 package magazine.scary.presentation.ui.images_list
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import magazine.scary.repository.MainRepo
+import magazine.scary.data.MainRepo
 import com.pixabay.utils.base.BaseViewModel
 import com.pixabay.utils.models.Loading
 import com.pixabay.utils.models.Response

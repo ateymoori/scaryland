@@ -2,31 +2,45 @@ package magazine.scary.presentation.ui.dashboard
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import magazine.scary.repository.MainRepo
+import magazine.scary.data.MainRepo
 import com.pixabay.utils.base.BaseViewModel
 import com.pixabay.utils.models.Loading
 import com.pixabay.utils.models.Response
 import com.pixabay.utils.models.Success
+import com.pixabay.utils.tools.log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import magazine.scary.domain.use_cases.GetMovies
 import magazine.scary.tools.utils.Cons
 import javax.inject.Inject
 
 class DashboardViewModel @Inject constructor(
-    private val mainRepo: MainRepo
+    private val mainRepo: MainRepo,
+    private val getMovies: GetMovies
+
 ) : BaseViewModel() {
 
 
     val imagesResults = MutableLiveData<Response<Any?>>()
-    val moviesResults = MutableLiveData<Response<Any?>>()
     val storiesResults = MutableLiveData<Response<Any?>>()
+
+
+    val moviesViewState: MutableLiveData<MoviesListViewState> = MutableLiveData()
+
+    init {
+        moviesViewState.value = MoviesListViewState()
+    }
 
     override fun onViewCreated() {
         super.onViewCreated()
-        getImages(Cons.DEFAULT_SEARCH_WORD)
-        getVideos()
-        getStories()
+
+        getMovies()
+
+
+//        getImages(Cons.DEFAULT_SEARCH_WORD)
+//        getVideos()
+//        getStories()
     }
 
     private fun getImages(word: String) {
@@ -38,13 +52,15 @@ class DashboardViewModel @Inject constructor(
         }
     }
 
-    private fun getVideos() {
-        viewModelScope.launch {
-            moviesResults.value = Loading(null)
-            moviesResults.value = withContext(Dispatchers.IO) {
-                Success(data = mainRepo.getMovies())
-            }
-        }
+    private fun getMovies() {
+        compositeDisposable.add(
+            getMovies.observable().subscribe({
+                moviesViewState.value = moviesViewState.value?.copy(showLoading = false, data = it)
+            },
+                {
+                    moviesViewState.value = moviesViewState.value?.copy(showLoading = false)
+                })
+        )
     }
 
     private fun getStories() {

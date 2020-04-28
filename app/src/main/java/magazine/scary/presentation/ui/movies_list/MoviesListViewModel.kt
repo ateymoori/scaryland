@@ -1,9 +1,8 @@
 package magazine.scary.presentation.ui.movies_list
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import magazine.scary.repository.MainRepo
+import magazine.scary.data.MainRepo
 import com.pixabay.utils.base.BaseViewModel
 import com.pixabay.utils.models.Loading
 import com.pixabay.utils.models.Response
@@ -27,12 +26,12 @@ class MoviesListViewModel @Inject constructor(
     }
 
     private fun getImages(word: String) {
-        viewModelScope.launch {
-            imagesResults.value = Loading(null)
-            imagesResults.value = withContext(Dispatchers.IO) {
-                Success(data = mainRepo.getMovies( ))
-            }
-        }
+//        viewModelScope.launch {
+//            imagesResults.value = Loading(null)
+//            imagesResults.value = withContext(Dispatchers.IO) {
+//                Success(data = mainRepo.getMovies( ))
+//            }
+//        }
     }
 
 

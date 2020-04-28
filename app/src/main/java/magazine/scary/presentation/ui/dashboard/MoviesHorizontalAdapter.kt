@@ -11,7 +11,8 @@ import com.pixabay.utils.tools.listen
 import com.pixabay.utils.views.RateView
 import kotlinx.android.synthetic.main.movie_horizontal_item.view.*
 import magazine.scary.R
-import magazine.scary.domain.entities.MovieModel
+import magazine.scary.data.entities.MovieData
+import magazine.scary.domain.entities.MovieEntity
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
 
@@ -32,35 +33,35 @@ class MoviesHorizontalAdapter @Inject constructor() :
                 false
             )
         ).listen { pos, _ ->
-            movies[pos].let { movieClickListener.onMovieClicked(it) }
+            movies?.get(pos).let { movieClickListener.onMovieClicked(it) }
         }
     }
 
-    var movies = listOf<MovieModel>()
+    var movies: List<MovieEntity>? = listOf<MovieEntity>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     interface MovieClickListener {
-        fun onMovieClicked(movie: MovieModel)
+        fun onMovieClicked(movie: MovieEntity?)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val item = movies[position]
+        val item = movies?.get(position)
         imageLoader.load(
-            url = item.portrait_image,
+            url = item?.portrait_image,
             imageView = holder.image
         )
 
-        holder.rate.rate = item.imdb.toString()
-        holder.movieTitle.text = item.title
+        holder.rate.rate = item?.imdb.toString()
+        holder.movieTitle.text = item?.title
 
 
     }
 
     override fun getItemCount(): Int {
-        return movies.size
+        return movies?.size ?: 0
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {

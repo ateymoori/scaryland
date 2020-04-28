@@ -1,21 +1,21 @@
-package magazine.scary.repository
+package magazine.scary.data
 
-import magazine.scary.domain.entities.MovieModel
+import magazine.scary.data.entities.MovieData
 import magazine.scary.domain.entities.ThrillerModel
-import magazine.scary.repository.rest.RestService
+import magazine.scary.data.api.Api
 import javax.inject.Inject
 
 class RemoteRepo @Inject
-constructor(private val repoService: RestService) {
+constructor(private val repoService: Api) {
 
     suspend fun searchImages(word: String) =
         repoService.getImages(
             word
         )
 
-    suspend fun getMovies(): List<MovieModel> {
-        return repoService.getMovies()
-    }
+//    suspend fun getMovies(): List<MovieData> {
+//        return repoService.getMovies()
+//    }
 
     suspend fun getThrillers(id: String): List<ThrillerModel> {
         return repoService.getThrillers(id)
@@ -27,8 +27,8 @@ constructor(private val repoService: RestService) {
     suspend fun getStory(id: String) =
         repoService.getStory(id)
 
-    suspend fun getMoviePosters(movieID: String) =
-        repoService.getMoviePosters(movieID)
+//    suspend fun getMoviePosters(movieID: String) =
+//        repoService.getMoviePosters(movieID)
 
     suspend fun translate(language_code: String, word: String) =
         repoService.translate(
