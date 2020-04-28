@@ -15,6 +15,7 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import magazine.scary.R
 import magazine.scary.data.entities.MovieData
+import magazine.scary.domain.entities.MovieEntity
 import magazine.scary.tools.utils.Cons
 import javax.inject.Inject
 
@@ -58,14 +59,14 @@ class MoviesListFragment : Fragment(), MoviesListAdapter.MovieClickListener {
         viewModel.imagesResults.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Success -> moviesAdapter.movies =
-                    (it.data as List<MovieData>)
+                    (it.data as List<MovieEntity>)
                 else -> {
                 }
             }
         })
     }
 
-    override fun onMovieClicked(movie: MovieData) {
+    override fun onMovieClicked(movie: MovieEntity) {
         Navigation.findNavController(moviesList).navigate(
             R.id.action_moviesListFragment_to_videoDetailsFragment
             ,

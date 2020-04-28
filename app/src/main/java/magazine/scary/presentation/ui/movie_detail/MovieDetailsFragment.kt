@@ -24,7 +24,7 @@ import magazine.scary.tools.utils.StartSnapHelper
 class MovieDetailsFragment : Fragment(), PostersHorizontalAdapter.ImageClickListener,
     ThrillersAdapter.ClickListener {
 
-    lateinit var movie: MovieData
+    lateinit var movie: MovieEntity
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -96,20 +96,17 @@ class MovieDetailsFragment : Fragment(), PostersHorizontalAdapter.ImageClickList
         )
 
 
-
     }
 
     private fun observeVM() {
-//        viewModel.moviePosters.observe(viewLifecycleOwner, Observer {
-//            when (it) {
-//                is Success -> {
-//                    postersAdapter.images =
-//                        (it.data as? List<PosterEntity>)?.filter { it.aspect_ratio < 1 }
-//                    imagesAdapter.images =
-//                        (it.data as? List<PosterEntity>)?.filter { it.aspect_ratio >= 1 }
-//                }
-//            }
-//        })
+        viewModel.postersViewState.observe(viewLifecycleOwner, Observer {
+            postersAdapter.images =
+               it.data?.filter { it.aspect_ratio < 1 }
+            imagesAdapter.images =
+                it.data?.filter { it.aspect_ratio >= 1 }
+
+        })
+
         viewModel.movieThrillers.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Success -> {

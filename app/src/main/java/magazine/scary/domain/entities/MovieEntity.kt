@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class MovieEntity(
-    val id: Long,
+    val id: Int,
     val title: String,
     val portrait_image: String,
     val landscape_image: String,

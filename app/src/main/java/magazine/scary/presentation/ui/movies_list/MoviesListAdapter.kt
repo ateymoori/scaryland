@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.movie_horizontal_item.view.image
 import kotlinx.android.synthetic.main.movies_list_item.view.*
 import magazine.scary.R
 import magazine.scary.data.entities.MovieData
+import magazine.scary.domain.entities.MovieEntity
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
 
@@ -36,14 +37,14 @@ class MoviesListAdapter @Inject constructor() :
         }
     }
 
-    var movies = listOf<MovieData>()
+    var movies = listOf<MovieEntity>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     interface MovieClickListener {
-        fun onMovieClicked(movie: MovieData)
+        fun onMovieClicked(movie: MovieEntity)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {

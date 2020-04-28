@@ -57,8 +57,7 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
         super.onViewCreated(view, savedInstanceState)
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(DashboardViewModel::class.java)
-
-        viewModel.onViewCreated()
+                .also { it.onViewCreated() }
 
         imagesList.adapter = imagesAdaptor.also { it.imageClickListener = this }
         moviesList.adapter = moviesAdapter.also { it.movieClickListener = this }
@@ -67,6 +66,11 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
         snapList.attachToRecyclerView(imagesList)
         snapList.attachToRecyclerView(moviesList)
         snapList.attachToRecyclerView(storiesList)
+
+        viewModel.moviesViewState.observe(viewLifecycleOwner, Observer {
+            swipeLayout.isRefreshing = it.showLoading
+            it.data.let { moviesAdapter.movies = it }
+        })
 
         viewModel.imagesResults.observe(viewLifecycleOwner, Observer {
             swipeLayout.isRefreshing = false
@@ -77,10 +81,7 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
                 }
             }
         })
-        viewModel.moviesViewState.observe(viewLifecycleOwner, Observer {
-            swipeLayout.isRefreshing = it.showLoading
-            it.data.let { moviesAdapter.movies = it }
-        })
+
         viewModel.storiesResults.observe(viewLifecycleOwner, Observer {
             swipeLayout.isRefreshing = false
             when (it) {

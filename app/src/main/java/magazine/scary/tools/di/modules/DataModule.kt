@@ -7,6 +7,7 @@ import magazine.scary.data.repositories.MoviesRemoteRepository
 import magazine.scary.data.repositories.MoviesRepositoryImpl
 import magazine.scary.domain.MovieRepository
 import magazine.scary.domain.use_cases.GetMovies
+import magazine.scary.domain.use_cases.GetPosters
 import magazine.scary.tools.utils.AsyncTransformer
 import javax.inject.Singleton
 
@@ -23,6 +24,12 @@ open class DataModule {
     @Provides
     fun movieDetails(movieRepository: MovieRepository): GetMovies {
         return GetMovies(moviesRepository = movieRepository, transformer = AsyncTransformer())
+    }
+
+    @Singleton
+    @Provides
+    fun getPosters(movieRepository: MovieRepository): GetPosters {
+        return GetPosters(moviesRepository = movieRepository, transformer = AsyncTransformer())
     }
 
 
