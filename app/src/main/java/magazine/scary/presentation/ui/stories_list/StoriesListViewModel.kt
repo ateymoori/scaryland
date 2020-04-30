@@ -10,28 +10,35 @@ import com.pixabay.utils.models.Success
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import magazine.scary.domain.use_cases.GetStories
 import javax.inject.Inject
 
 class StoriesListViewModel @Inject constructor(
-    private val mainRepo: MainRepo
+    private val getStories: GetStories
 ) : BaseViewModel() {
 
 
-    val storiesResults = MutableLiveData<Response<Any?>>()
+    val storiesViewState: MutableLiveData<StoriesViewState> = MutableLiveData()
+
+    init {
+        storiesViewState.value = StoriesViewState()
+    }
 
     override fun onViewCreated() {
         super.onViewCreated()
-      //  getStories( )
+        getList()
     }
 
-//    private fun getStories( ) {
-//        viewModelScope.launch {
-//            storiesResults.value = Loading(null)
-//            storiesResults.value = withContext(Dispatchers.IO) {
-//                Success(data = mainRepo.getStories( ))
-//            }
-//        }
-//    }
+    private fun getList() {
+        compositeDisposable.add(
+            getStories.observable().subscribe({
+                storiesViewState.value =
+                    storiesViewState.value?.copy(showLoading = false, data = it)
+            }, {
+                storiesViewState.value = storiesViewState.value?.copy(showLoading = false)
+            })
+        )
+    }
 
 
 }

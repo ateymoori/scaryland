@@ -12,12 +12,12 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_video_viewer.back
 import kotlinx.android.synthetic.main.fragment_video_viewer.trailer
 import magazine.scary.R
-import magazine.scary.domain.entities.VideoPureModel
+import magazine.scary.domain.entities.VideoPureEntity
 import magazine.scary.tools.utils.Cons
 
 class VideoViewerFragment : Fragment() {
 
-    lateinit var video: VideoPureModel
+    lateinit var video: VideoPureEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

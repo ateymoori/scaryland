@@ -2,14 +2,8 @@ package magazine.scary.data.repositories.story
 
 import io.reactivex.Observable
 import magazine.scary.data.api.Api
-import magazine.scary.domain.MovieDataStore
-import magazine.scary.data.mappers.MovieDataEntityMapper
-import magazine.scary.data.mappers.PosterDataEntityMapper
 import magazine.scary.data.mappers.StoryDataEntityMapper
-import magazine.scary.domain.StoryDataStore
-import magazine.scary.domain.entities.MovieEntity
-import magazine.scary.domain.entities.Optional
-import magazine.scary.domain.entities.PosterEntity
+import magazine.scary.domain.interfaces.StoryDataStore
 import magazine.scary.domain.entities.StoryEntity
 
 class StoriesRemoteRepository

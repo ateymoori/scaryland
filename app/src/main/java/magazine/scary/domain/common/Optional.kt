@@ -1,4 +1,4 @@
-package magazine.scary.domain.entities
+package magazine.scary.domain.common
 
 class Optional<out T>(val value: T? = null) {
 

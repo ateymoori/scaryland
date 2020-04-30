@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pixabay.utils.tools.listen
 import kotlinx.android.synthetic.main.image_portrait_item.view.*
 import magazine.scary.R
-import magazine.scary.domain.entities.ImageModel
+import magazine.scary.domain.entities.ImageEntity
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
 
@@ -34,21 +34,21 @@ class ImagesHorizontalAdapter @Inject constructor() :
         }
     }
 
-    var images:List<ImageModel>? = listOf()
+    var images:List<ImageEntity>? = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     interface ImageClickListener {
-        fun onImageClicked(image: ImageModel)
+        fun onImageClicked(image: ImageEntity)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val item = images?.get(position)
         imageLoader.load(
             preLoadUrl = item?.previewURL,
-            url = item?.webformatURL,
+            url = item?.largeImageURL,
             imageView = holder.image
         )
 

@@ -14,11 +14,9 @@ import com.pixabay.utils.models.Success
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import magazine.scary.R
-import magazine.scary.domain.entities.ImageModel
-import magazine.scary.data.entities.MovieData
+import magazine.scary.domain.entities.ImageEntity
 import magazine.scary.domain.entities.MovieEntity
 import magazine.scary.domain.entities.StoryEntity
-import magazine.scary.domain.entities.StoryModel
 import magazine.scary.presentation.ui.container.MainActivity
 import magazine.scary.tools.utils.Cons
 import magazine.scary.tools.utils.StartSnapHelper
@@ -70,33 +68,18 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
 
         viewModel.moviesViewState.observe(viewLifecycleOwner, Observer {
             swipeLayout.isRefreshing = it.showLoading
-            it.data.let { moviesAdapter.movies = it }
+            moviesAdapter.movies = it.data?.take(16)
         })
 
         viewModel.storiesViewState.observe(viewLifecycleOwner, Observer {
             swipeLayout.isRefreshing = it.showLoading
-            it.data.let { storiesAdapter.stories = it }
+            storiesAdapter.stories = it.data?.take(16)
         })
 
-        viewModel.imagesResults.observe(viewLifecycleOwner, Observer {
+        viewModel.imagesViewState.observe(viewLifecycleOwner, Observer {
             swipeLayout.isRefreshing = false
-            when (it) {
-                is Success -> imagesAdaptor.images =
-                    (it.data as? List<ImageModel>)?.take(16)
-                else -> {
-                }
-            }
+            imagesAdaptor.images = it.data?.take(16)
         })
-
-//        viewModel.storiesResults.observe(viewLifecycleOwner, Observer {
-//            swipeLayout.isRefreshing = false
-//            when (it) {
-//                is Success -> storiesAdapter.stories =
-//                    (it.data as List<StoryModel>)
-//                else -> {
-//                }
-//            }
-//        })
 
 
         viewAllImages.setOnClickListener {
@@ -121,7 +104,7 @@ class DashboardFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListener
         menu.setOnClickListener { (activity as? MainActivity)?.toggleMenu() }
     }
 
-    override fun onImageClicked(image: ImageModel) {
+    override fun onImageClicked(image: ImageEntity) {
         findNavController(imagesList).navigate(
             R.id.action_dashboardFragment_to_imageViewerFragment
             ,

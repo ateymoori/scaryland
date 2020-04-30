@@ -1,39 +1,32 @@
 package magazine.scary.presentation.ui.dashboard
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import magazine.scary.data.MainRepo
 import com.pixabay.utils.base.BaseViewModel
-import com.pixabay.utils.models.Loading
-import com.pixabay.utils.models.Response
-import com.pixabay.utils.models.Success
-import com.pixabay.utils.tools.log
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import magazine.scary.domain.use_cases.GetImages
 import magazine.scary.domain.use_cases.GetMovies
 import magazine.scary.domain.use_cases.GetStories
-import magazine.scary.tools.utils.Cons
 import javax.inject.Inject
 
 class DashboardViewModel @Inject constructor(
     private val mainRepo: MainRepo,
     private val getMovies: GetMovies,
-    private val getStories: GetStories
+    private val getStories: GetStories,
+    private val getImages: GetImages
 
 ) : BaseViewModel() {
 
 
-    val imagesResults = MutableLiveData<Response<Any?>>()
-    val storiesResults = MutableLiveData<Response<Any?>>()
 
 
     val moviesViewState: MutableLiveData<MoviesListViewState> = MutableLiveData()
     val storiesViewState: MutableLiveData<StoriesListViewState> = MutableLiveData()
+    val imagesViewState: MutableLiveData<ImagesListViewState> = MutableLiveData()
 
     init {
         moviesViewState.value = MoviesListViewState()
         storiesViewState.value = StoriesListViewState()
+        imagesViewState.value = ImagesListViewState()
     }
 
     override fun onViewCreated() {
@@ -41,6 +34,7 @@ class DashboardViewModel @Inject constructor(
 
         getMovies()
         getStories()
+        getImages()
 
 //        getImages(Cons.DEFAULT_SEARCH_WORD)
 //        getVideos()
@@ -73,30 +67,15 @@ class DashboardViewModel @Inject constructor(
     }
 
 
-    private fun getImages(word: String) {
-        viewModelScope.launch {
-            imagesResults.value = Loading(null)
-            imagesResults.value = withContext(Dispatchers.IO) {
-                Success(data = mainRepo.getImages(word))
-            }
-        }
+    private fun getImages() {
+        compositeDisposable.add(
+            getImages.observable().subscribe({
+                imagesViewState.value = imagesViewState.value?.copy(showLoading = false, data = it)
+            },
+                {
+                    imagesViewState.value = imagesViewState.value?.copy(showLoading = false)
+                })
+        )
     }
 
-//    private fun getStories() {
-//        viewModelScope.launch {
-//            storiesResults.value = Loading(null)
-//            storiesResults.value = withContext(Dispatchers.IO) {
-//                Success(data = mainRepo.getStories())
-//            }
-//        }
-//    }
-
-
-//    private fun search(word:String): Flow<List<ImageModel>> = flow {
-//        emit(rest.getImages(word).hits)
-//    }
-//
-//    fun getImages(word:String): LiveData<List<ImageModel>> {
-//        return search(word).asLiveData()
-//    }
 }

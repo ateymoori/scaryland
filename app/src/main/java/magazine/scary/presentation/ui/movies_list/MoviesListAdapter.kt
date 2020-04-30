@@ -33,11 +33,11 @@ class MoviesListAdapter @Inject constructor() :
                 false
             )
         ).listen { pos, _ ->
-            movies[pos].let { movieClickListener.onMovieClicked(it) }
+            movies?.get(pos)?.let { movieClickListener.onMovieClicked(it) }
         }
     }
 
-    var movies = listOf<MovieEntity>()
+    var movies:List<MovieEntity>? = listOf<MovieEntity>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -48,16 +48,16 @@ class MoviesListAdapter @Inject constructor() :
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val item = movies[position]
+        val item = movies?.get(position)
         imageLoader.load(
-            url = item.landscape_image,
+            url = item?.landscape_image,
             imageView = holder.image
         )
-        holder.name.text = "${item.title} (${item.release_date.substring(0, 4)})"
+        holder.name.text = "${item?.title} (${item?.release_date?.substring(0, 4)})"
     }
 
     override fun getItemCount(): Int {
-        return movies.size
+        return movies?.size ?: 0
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {

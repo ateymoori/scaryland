@@ -1,11 +1,12 @@
-package magazine.scary.domain
+package magazine.scary.domain.interfaces
 
 import io.reactivex.Observable
+import magazine.scary.data.entities.MovieData
 import magazine.scary.domain.entities.MovieEntity
 import magazine.scary.domain.entities.PosterEntity
 import magazine.scary.domain.entities.StoryEntity
 
-interface StoryDataStore {
-    fun getStoryById(storyID: Int): Observable<StoryEntity>
+interface StoryRepository {
     fun getStories(): Observable<List<StoryEntity>>
+    fun getStory(storyID: Int): Observable<StoryEntity>
 }

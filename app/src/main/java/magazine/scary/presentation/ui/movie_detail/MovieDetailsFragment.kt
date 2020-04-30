@@ -9,13 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
-import com.pixabay.utils.models.Success
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import kotlinx.android.synthetic.main.fragment_movie_details.image
 import magazine.scary.R
-import magazine.scary.data.entities.MovieData
 import magazine.scary.domain.entities.*
+import magazine.scary.tools.utils.mapToImageModel
 import magazine.scary.tools.utils.Cons
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
@@ -101,40 +100,36 @@ class MovieDetailsFragment : Fragment(), PostersHorizontalAdapter.ImageClickList
     private fun observeVM() {
         viewModel.postersViewState.observe(viewLifecycleOwner, Observer {
             postersAdapter.images =
-               it.data?.filter { it.aspect_ratio < 1 }
+                it.data?.filter { it.aspect_ratio < 1 }
             imagesAdapter.images =
                 it.data?.filter { it.aspect_ratio >= 1 }
 
         })
 
-        viewModel.movieThrillers.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is Success -> {
-                    thrillersAdapter.items =
-                        (it.data as? List<ThrillerModel>)
-                }
-            }
+        viewModel.thrillersViewState.observe(viewLifecycleOwner, Observer {
+            thrillersAdapter.items = it.data
         })
+
 
     }
 
     override fun onImageClicked(image: PosterEntity) {
-//        NavHostFragment.findNavController(this).navigate(
-//            R.id.action_videoDetailsFragment_to_imageViewerFragment
-//            ,
-//            bundleOf(
-//                Cons.ITEM_BUNDLE to image.mapToImageModel()
-//            )
-//        )
+        NavHostFragment.findNavController(this).navigate(
+            R.id.action_videoDetailsFragment_to_imageViewerFragment
+            ,
+            bundleOf(
+                Cons.ITEM_BUNDLE to image.mapToImageModel()
+            )
+        )
 
     }
 
-    override fun onThrillerClicked(thriller: ThrillerModel) {
+    override fun onThrillerClicked(thriller: ThrillerEntity) {
         NavHostFragment.findNavController(this).navigate(
             R.id.action_videoDetailsFragment_to_videoViewerFragment
             ,
             bundleOf(
-                Cons.ITEM_BUNDLE to VideoPureModel(
+                Cons.ITEM_BUNDLE to VideoPureEntity(
                     url = thriller.video,
                     title = movie.title
                 )

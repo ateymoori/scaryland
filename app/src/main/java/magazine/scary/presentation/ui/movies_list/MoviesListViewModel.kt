@@ -10,29 +10,38 @@ import com.pixabay.utils.models.Success
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import magazine.scary.domain.use_cases.GetMovies
 import magazine.scary.tools.utils.Cons
 import javax.inject.Inject
 
 class MoviesListViewModel @Inject constructor(
-    private val mainRepo: MainRepo
+    private val getMovies: GetMovies
 ) : BaseViewModel() {
 
+    val moviesViewState: MutableLiveData<MoviesViewState> = MutableLiveData()
 
-    val imagesResults = MutableLiveData<Response<Any?>>()
+    init {
+        moviesViewState.value = MoviesViewState()
+    }
 
     override fun onViewCreated() {
         super.onViewCreated()
-        getImages(Cons.DEFAULT_SEARCH_WORD)
+        getMovies()
+    }
+    fun getMovies() {
+            compositeDisposable.add(
+                getMovies.observable().subscribe({
+                    moviesViewState.value =
+                        moviesViewState.value?.copy(showLoading = false, data = it)
+                },
+                    {
+                        moviesViewState.value = moviesViewState.value?.copy(showLoading = false)
+                    })
+            )
     }
 
-    private fun getImages(word: String) {
-//        viewModelScope.launch {
-//            imagesResults.value = Loading(null)
-//            imagesResults.value = withContext(Dispatchers.IO) {
-//                Success(data = mainRepo.getMovies( ))
-//            }
-//        }
-    }
+
+
 
 
 }

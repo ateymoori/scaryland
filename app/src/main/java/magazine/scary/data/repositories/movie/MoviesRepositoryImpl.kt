@@ -1,8 +1,7 @@
 package magazine.scary.data.repositories.movie
 
 import io.reactivex.Observable
-import magazine.scary.data.repositories.movie.MoviesRemoteRepository
-import magazine.scary.domain.MovieRepository
+import magazine.scary.domain.interfaces.MovieRepository
 import magazine.scary.domain.entities.MovieEntity
 import magazine.scary.domain.entities.PosterEntity
 

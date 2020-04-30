@@ -15,13 +15,10 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.pixabay.utils.tools.AppUtils
-import com.pixabay.utils.tools.log
 import com.pixabay.utils.tools.userModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_navigation_drawer.*
 import magazine.scary.R
-import magazine.scary.domain.entities.MenuItemTypeEnum
-import magazine.scary.domain.entities.MenuModel
 import magazine.scary.presentation.ui.container.DrawerMenuAdapter
 import magazine.scary.presentation.ui.container.MainActivity
 import magazine.scary.tools.utils.ImageLoader

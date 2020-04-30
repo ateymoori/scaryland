@@ -15,10 +15,7 @@ class PosterDataEntityMapper @Inject constructor() : Mapper<PosterData, PosterEn
             aspect_ratio = from.aspect_ratio ,
             file_path = from.file_path ,
             height = from.height ,
-            width = from.width ,
-            iso_639_1 = from.iso_639_1 ,
-            vote_average = from.vote_average ,
-            vote_count = from.vote_count
+            width = from.width
         )
     }
 }

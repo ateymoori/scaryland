@@ -1,7 +1,6 @@
 package magazine.scary.domain.common
 
 import io.reactivex.Observable
-import magazine.scary.domain.entities.Optional
 
 abstract class Mapper<in E, T> {
     abstract fun mapFrom(from: E): T

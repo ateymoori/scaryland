@@ -12,11 +12,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.pixabay.utils.models.Success
-import com.pixabay.utils.views.StartSnapHelper
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import magazine.scary.R
-import magazine.scary.domain.entities.ImageModel
+import magazine.scary.domain.entities.ImageEntity
 import magazine.scary.presentation.ui.dashboard.ImagesHorizontalAdapter
 import magazine.scary.tools.utils.Cons.Companion.ITEM_BUNDLE
 import javax.inject.Inject
@@ -27,6 +26,7 @@ class ImagesListFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListene
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: ImagesListViewModel
+
     @Inject
     lateinit var imagesAdaptor: ImagesHorizontalAdapter
 
@@ -48,29 +48,23 @@ class ImagesListFragment : Fragment(), ImagesHorizontalAdapter.ImageClickListene
         imagesList.layoutManager = GridLayoutManager(activity as Context?, 3)
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(ImagesListViewModel::class.java)
+                .also { it.onViewCreated() }
 
-        viewModel.onViewCreated()
-
-        imagesList.adapter = imagesAdaptor.also { it.imageClickListener=this }
+        imagesList.adapter = imagesAdaptor.also { it.imageClickListener = this }
 
         observeVM()
     }
 
-    private fun observeVM(){
-        viewModel.imagesResults.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is Success -> imagesAdaptor.images =
-                    (it.data as List<ImageModel>)
-                else -> {
-                }
-            }
+    private fun observeVM() {
+        viewModel.imagesViewState.observe(viewLifecycleOwner, Observer {
+            imagesAdaptor.images = it.data
         })
     }
 
-    override fun onImageClicked(image: ImageModel) {
+    override fun onImageClicked(image: ImageEntity) {
         Navigation.findNavController(imagesList).navigate(
             R.id.action_imagesListFrgment_to_imageViewerFragment
-        ,
+            ,
             bundleOf(ITEM_BUNDLE to image)
         )
     }

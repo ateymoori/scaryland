@@ -3,14 +3,9 @@ package magazine.scary.presentation.ui.image_detail
 
 import android.Manifest
 import android.app.WallpaperManager
-import android.content.ContentValues
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +21,7 @@ import com.pixabay.utils.tools.toast
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_image_viewer.*
 import magazine.scary.R
-import magazine.scary.domain.entities.ImageModel
+import magazine.scary.domain.entities.ImageEntity
 import magazine.scary.tools.utils.Cons.Companion.ITEM_BUNDLE
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
@@ -36,7 +31,7 @@ class ImageViewerFragment : Fragment() {
     @Inject
     lateinit var imageLoader: ImageLoader
 
-    lateinit var item: ImageModel
+    lateinit var item: ImageEntity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

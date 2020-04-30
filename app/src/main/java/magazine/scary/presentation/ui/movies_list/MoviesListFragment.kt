@@ -56,13 +56,8 @@ class MoviesListFragment : Fragment(), MoviesListAdapter.MovieClickListener {
     }
 
     private fun observeVM(){
-        viewModel.imagesResults.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is Success -> moviesAdapter.movies =
-                    (it.data as List<MovieEntity>)
-                else -> {
-                }
-            }
+        viewModel.moviesViewState.observe(viewLifecycleOwner, Observer {
+            moviesAdapter.movies=it.data
         })
     }
 

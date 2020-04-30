@@ -9,7 +9,7 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.pixabay.utils.views.MyTextView
 import magazine.scary.R
-import magazine.scary.domain.entities.MenuModel
+import magazine.scary.presentation.ui.drawer.MenuModel
 
 class DrawerMenuAdapter(private val context: Context?, private val items: List<MenuModel>) : BaseAdapter() {
 

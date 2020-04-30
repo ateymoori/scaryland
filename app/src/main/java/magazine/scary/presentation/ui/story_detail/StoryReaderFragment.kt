@@ -23,7 +23,7 @@ import magazine.scary.R
 import com.pixabay.utils.models.AudioModel
 import com.pixabay.utils.models.AudioStatus
 import com.pixabay.utils.tools.log
-import magazine.scary.domain.entities.StoryModel
+import magazine.scary.domain.entities.StoryEntity
 import magazine.scary.tools.utils.Cons
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
@@ -42,7 +42,7 @@ class StoryReaderFragment : Fragment(), CurrentSessionCallback {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: StoryDetailReaderViewModel
-    lateinit var story: StoryModel
+    var story: StoryEntity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,18 +65,17 @@ class StoryReaderFragment : Fragment(), CurrentSessionCallback {
         super.onViewCreated(view, savedInstanceState)
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(StoryDetailReaderViewModel::class.java)
-        viewModel.id = story.id.toString()
-        viewModel.onViewCreated()
+        viewModel.getStory(story?.id)
         imageLoader.load(
-            url = story.image,
+            url = story?.image,
             imageView = image
         )
         imageLoader.load(
-            url = story.author?.image,
+            url = story?.author_image,
             imageView = avatar
         )
-        title.text = story.title
-        author.text = "by ${story.author?.name_family} "
+        title.text = story?.title
+        author.text = "by ${story?.author_name_family} "
         back.setOnClickListener { activity?.onBackPressed() }
         share.setOnClickListener {
             AppUtils.shareToMessagingApps(
@@ -86,7 +85,7 @@ class StoryReaderFragment : Fragment(), CurrentSessionCallback {
             )
             AppUtils.shareToMessagingApps(
                 activity, title = "Hi there!",
-                message = "Install Horror Magazine to read ${story.title} by ${story.author?.name_family} . \n https://play.google.com/store/apps/details?id=magazine.scary"
+                message = "Install Horror Magazine to read ${story?.title} by ${story?.author_name_family} . \n https://play.google.com/store/apps/details?id=magazine.scary"
             )
         }
         observeVM()
@@ -98,11 +97,11 @@ class StoryReaderFragment : Fragment(), CurrentSessionCallback {
             RxBus.publish(
                 RxEvent.AudioPlay(
                     AudioModel(
-                        storyID = story.id.toString(),
-                        audioURL = story.mp3_file,
-                        image = story.image,
-                        title = story.title,
-                        subTitle = story.author?.name_family
+                        storyID = story?.id.toString(),
+                        audioURL = story?.mp3_file,
+                        image = story?.image,
+                        title = story?.title,
+                        subTitle = story?.author_name_family
                     )
                 )
             )
@@ -117,27 +116,21 @@ class StoryReaderFragment : Fragment(), CurrentSessionCallback {
 
 
     private fun observeVM() {
-        viewModel.storyDetail.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is Success -> {
-                    loading.visibility = View.GONE
-                    story = it.data as StoryModel
-                    showData(story)
-                }
-                is Loading -> {
-                    loading.visibility = View.VISIBLE
-                }
-                else -> {
-                    loading.visibility = View.GONE
-                }
-            }
+        viewModel.storyViewState.observe(viewLifecycleOwner, Observer {
+            showLoading(it.showLoading)
+            story = it.data
+            showData(story)
         })
 
     }
 
-    private fun showData(story: StoryModel) {
-        content.text = story.content
-        if (story.mp3_file == null) {
+    private fun showLoading(show: Boolean) {
+        loading.visibility = if (show) View.VISIBLE else View.GONE
+    }
+
+    private fun showData(story: StoryEntity?) {
+        content.text = story?.content
+        if (story?.mp3_file == null) {
             play.visibility = View.GONE
         } else
             play.visibility = View.VISIBLE

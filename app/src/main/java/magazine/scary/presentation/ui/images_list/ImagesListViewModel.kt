@@ -10,28 +10,36 @@ import com.pixabay.utils.models.Success
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import magazine.scary.domain.use_cases.GetImages
+import magazine.scary.presentation.ui.dashboard.ImagesListViewState
 import magazine.scary.tools.utils.Cons
 import javax.inject.Inject
 
 class ImagesListViewModel @Inject constructor(
-    private val mainRepo: MainRepo
+    private val getImages: GetImages
 ) : BaseViewModel() {
 
 
-    val imagesResults = MutableLiveData<Response<Any?>>()
+    val imagesViewState: MutableLiveData<ImagesListViewState> = MutableLiveData()
+
+    init {
+        imagesViewState.value = ImagesListViewState()
+    }
 
     override fun onViewCreated() {
         super.onViewCreated()
-        getImages(Cons.DEFAULT_SEARCH_WORD)
+        getImages()
     }
 
-    private fun getImages(word: String) {
-        viewModelScope.launch {
-            imagesResults.value = Loading(null)
-            imagesResults.value = withContext(Dispatchers.IO) {
-                Success(data = mainRepo.getImages(word))
-            }
-        }
+    private fun getImages() {
+        compositeDisposable.add(
+            getImages.observable().subscribe({
+                imagesViewState.value = imagesViewState.value?.copy(showLoading = false, data = it)
+            },
+                {
+                    imagesViewState.value = imagesViewState.value?.copy(showLoading = false)
+                })
+        )
     }
 
 

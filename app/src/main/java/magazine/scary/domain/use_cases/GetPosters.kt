@@ -1,10 +1,8 @@
 package magazine.scary.domain.use_cases
 
 import io.reactivex.Observable
-import magazine.scary.domain.MovieRepository
+import magazine.scary.domain.interfaces.MovieRepository
 import magazine.scary.domain.common.Transformer
-import magazine.scary.data.entities.MovieData
-import magazine.scary.domain.entities.MovieEntity
 import magazine.scary.domain.entities.PosterEntity
 
 

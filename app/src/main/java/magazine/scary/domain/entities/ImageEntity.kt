@@ -6,17 +6,15 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = "images")
-data class ImageModel(
-    val favorites: Int? = null,
-    @PrimaryKey
+data class ImageEntity(
     val id: Int? = null,
-    val imageSize: Int? = null,
-    val largeImageURL: String? = null,
-    val likes: Int? = null,
+    val tags: String? = null,
     val previewURL: String? = null,
-    val user: String? = null,
-    val userImageURL: String? = null,
+    val largeImageURL: String? = null,
+    val imageSize: String? = null,
     val views: Int? = null,
-    val webformatURL: String? = null
+    val favorites: Int? = null,
+    val likes: Int? = null,
+    val user: String? = null,
+    val userImageURL: String? = null
 ) : Parcelable

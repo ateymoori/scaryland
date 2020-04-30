@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pixabay.utils.tools.listen
 import kotlinx.android.synthetic.main.story_horizontal_item.view.*
 import magazine.scary.R
-import magazine.scary.domain.entities.StoryModel
+import magazine.scary.domain.entities.StoryEntity
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
 
@@ -22,7 +22,7 @@ class StoriesListAdapter @Inject constructor() :
     @Inject
     lateinit var imageLoader: ImageLoader
 
-    var stories = listOf<StoryModel>()
+    var stories:List<StoryEntity>? = listOf<StoryEntity>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -38,28 +38,28 @@ class StoriesListAdapter @Inject constructor() :
                 false
             )
         ).listen { pos, _ ->
-            stories[pos].let { storyClickListener.onStoryClickListener(it) }
+            stories?.get(pos)?.let { storyClickListener.onStoryClickListener(it) }
         }
     }
 
 
     interface StoryClickListener {
-        fun onStoryClickListener(story: StoryModel)
+        fun onStoryClickListener(story: StoryEntity)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val item = stories[position]
+        val item = stories?.get(position)
         imageLoader.load(
-            url = item.image,
+            url = item?.image,
             imageView = holder.image
         )
         imageLoader.load(
-            url = item.author?.image,
+            url = item?.author_image,
             imageView = holder.avatar
         )
-        holder.title.text = "${item.title}"
-        holder.readingTime.text = "${item.reading_mintues}"
-        if (item.mp3_file == null) {
+        holder.title.text = "${item?.title}"
+        holder.readingTime.text = "${item?.reading_minutes}"
+        if (item?.mp3_file == null) {
             holder.hasAudio.visibility = View.GONE
         } else
             holder.hasAudio.visibility = View.VISIBLE
@@ -67,7 +67,7 @@ class StoriesListAdapter @Inject constructor() :
     }
 
     override fun getItemCount(): Int {
-        return stories.size
+        return stories?.size ?: 0
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {

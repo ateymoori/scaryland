@@ -1,6 +1,5 @@
 package magazine.scary.presentation.ui.stories_list
 
-
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,14 +11,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
-import com.pixabay.utils.models.Success
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_story_list.*
 import magazine.scary.R
-import magazine.scary.domain.entities.StoryModel
+import magazine.scary.domain.entities.StoryEntity
 import magazine.scary.tools.utils.Cons
 import javax.inject.Inject
-
 
 class StoryListFragment : Fragment(), StoriesListAdapter.StoryClickListener {
 
@@ -58,17 +55,12 @@ class StoryListFragment : Fragment(), StoriesListAdapter.StoryClickListener {
     }
 
     private fun observeVM(){
-        viewModel.storiesResults.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is Success -> storiesAdaptor.stories =
-                    (it.data as List<StoryModel>)
-                else -> {
-                }
-            }
+        viewModel.storiesViewState.observe(viewLifecycleOwner, Observer {
+            storiesAdaptor.stories = it.data
         })
     }
 
-    override fun onStoryClickListener(story: StoryModel) {
+    override fun onStoryClickListener(story: StoryEntity) {
         Navigation.findNavController(storiesList).navigate(
             R.id.action_storyListFragment_to_storyReaderFragment
             ,

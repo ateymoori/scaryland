@@ -12,7 +12,18 @@ import magazine.scary.tools.di.modules.*
 import magazine.scary.tools.utils.MyApplication
 
 @Singleton
-@Component(modules = [ContextModule::class, ApplicationModule::class, AndroidSupportInjectionModule::class, ViewModelModule::class, ActivityModule::class, FragmentModule::class, DataModule::class,RoomModule::class])
+@Component(
+    modules = [
+        ContextModule::class,
+        ApplicationModule::class,
+        AndroidSupportInjectionModule::class,
+        ViewModelModule::class,
+        ActivityModule::class,
+        FragmentModule::class,
+        DataModule::class,
+        RoomModule::class
+    ]
+)
 interface ApplicationComponent : AndroidInjector<DaggerApplication> {
 
     fun inject(application: MyApplication)
@@ -21,7 +32,6 @@ interface ApplicationComponent : AndroidInjector<DaggerApplication> {
     interface Builder {
         @BindsInstance
         fun application(application: Application): Builder
-
         fun build(): ApplicationComponent
     }
 }

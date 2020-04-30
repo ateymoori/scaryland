@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pixabay.utils.tools.listen
 import kotlinx.android.synthetic.main.image_portrait_item.view.*
 import magazine.scary.R
-import magazine.scary.domain.entities.ImageModel
-import magazine.scary.domain.entities.ThrillerModel
+import magazine.scary.domain.entities.ThrillerEntity
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
 
@@ -35,14 +34,14 @@ class ThrillersAdapter @Inject constructor() :
         }
     }
 
-    var items:List<ThrillerModel>? = listOf()
+    var items:List<ThrillerEntity>? = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     interface ClickListener {
-        fun onThrillerClicked(thriller: ThrillerModel)
+        fun onThrillerClicked(thriller: ThrillerEntity)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {

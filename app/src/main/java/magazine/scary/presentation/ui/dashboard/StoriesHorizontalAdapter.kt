@@ -8,14 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pixabay.utils.tools.listen
-import com.pixabay.utils.tools.log
-import kotlinx.android.synthetic.main.image_portrait_item.view.*
 import kotlinx.android.synthetic.main.image_portrait_item.view.image
 import kotlinx.android.synthetic.main.story_horizontal_item.view.*
 import magazine.scary.R
-import magazine.scary.domain.entities.ImageModel
 import magazine.scary.domain.entities.StoryEntity
-import magazine.scary.domain.entities.StoryModel
 import magazine.scary.tools.utils.ImageLoader
 import javax.inject.Inject
 
