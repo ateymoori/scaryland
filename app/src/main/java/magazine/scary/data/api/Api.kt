@@ -18,22 +18,22 @@ interface Api {
         @Field("q") word: String
     ): ResponseBody
 
-    @GET("http://amirteymoori.ir/voyager/public/api/movies/posters/{movieID}")
+    @GET("movies/posters/{movieID}")
     fun getMoviePosters(@Path("movieID") movieID: Int): Observable<List<PosterData>>
 
-    @GET("http://amirteymoori.ir/voyager/public/api/movies")
+    @GET("movies")
     fun getMovies(): Observable<List<MovieData>>
 
-    @GET("http://amirteymoori.ir/voyager/public/api/stories/")
+    @GET("stories/")
     fun getStories(): Observable<List<StoryData>>
 
-    @GET("http://amirteymoori.ir/voyager/public/api/stories/{id}")
+    @GET("stories/{id}")
     fun getStory(@Path("id") id: Int): Observable<StoryData>
 
-    @GET("http://amirteymoori.ir/voyager/public/api/movies/thrillers/{id}")
+    @GET("movies/thrillers/{id}")
     fun getThrillers(@Path("id") id: Int): Observable<List<ThrillerData>>
 
-    @GET("http://amirteymoori.ir/voyager/public/api/images")
+    @GET("images")
     fun getImages(): Observable<List<ImageData>>
 
 }
