@@ -12,9 +12,9 @@
 <br>
 
 <a href="https://play.google.com/store/apps/details?id=magazine.scary">
-<img src="FILES/google_play.png?raw=true" alt="Download Horror Magazine" width=160 />
+<img src="FILES/google_play.png?raw=true" alt="Download Horror Magazine" width=160 target="_blank"/>
 </a>
-
+<br>
 Horror Magazine is a free directory of new Horror Short Stories, Scary images Backgrounds, Discover movies, and more.
 <br><br>
 
