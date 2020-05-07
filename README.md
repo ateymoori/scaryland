@@ -46,6 +46,8 @@ During the work on this app, my goal was improve my Android Skills and build a S
 - Android Navigation component (Single Activity Pattern. Fragment Factory)
 - PHP Laravel as API provider/Admin web portal by my self! <a href="https://github.com/ateymoori/voyager/">(Repo)</a>
 
+<img src="FILES/clean.png?raw=true" alt="Android Architecture " width=400 />&nbsp;
+<img src="FILES/admin.png?raw=true" alt="Android Architecture " width=400 />
 
 
 ### Used libraries: ###
