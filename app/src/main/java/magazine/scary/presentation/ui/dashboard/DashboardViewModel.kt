@@ -1,7 +1,6 @@
 package magazine.scary.presentation.ui.dashboard
 
 import androidx.lifecycle.MutableLiveData
-import magazine.scary.data.MainRepo
 import com.pixabay.utils.base.BaseViewModel
 import magazine.scary.domain.use_cases.GetImages
 import magazine.scary.domain.use_cases.GetMovies
@@ -9,7 +8,6 @@ import magazine.scary.domain.use_cases.GetStories
 import javax.inject.Inject
 
 class DashboardViewModel @Inject constructor(
-    private val mainRepo: MainRepo,
     private val getMovies: GetMovies,
     private val getStories: GetStories,
     private val getImages: GetImages

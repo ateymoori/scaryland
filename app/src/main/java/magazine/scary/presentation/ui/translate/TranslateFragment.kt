@@ -82,15 +82,8 @@ class TranslateFragment : ExpandedBottomSheetDialog(), AdapterView.OnItemSelecte
         }
         languagesList.onItemSelectedListener = this
 
-        viewModel.translateResult.observe(viewLifecycleOwner, Observer {
-            if (it is Success) {
-                val value = (it.data as String)
-                val jsArrayA = JSONArray(value)
-                val jsArrayB = JSONArray(jsArrayA[0].toString())
-                val jsArrayC = JSONArray(jsArrayB[0].toString())
-                val result = jsArrayC[0].toString()
-                translated.text = result
-            }
+        viewModel.translateViewState.observe(viewLifecycleOwner, Observer {
+            translated.text = it.data?.results
         })
 
         languagesList.setTitle("Select Language (${languagesListJS.size} Languages)")
@@ -108,7 +101,7 @@ class TranslateFragment : ExpandedBottomSheetDialog(), AdapterView.OnItemSelecte
         languagesListJS.forEach {
             if ("${it.name} (${it.nativeName})" == selectedLang) {
                 selectedLangCode = it.code
-                viewModel.translate(selectedLangCode, word.replace(";",""))
+                viewModel.translate(selectedLangCode, word.replace(";", ""))
             }
         }
     }

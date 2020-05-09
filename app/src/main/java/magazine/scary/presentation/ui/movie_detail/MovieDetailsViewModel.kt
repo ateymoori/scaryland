@@ -1,20 +1,11 @@
 package magazine.scary.presentation.ui.movie_detail
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import magazine.scary.data.MainRepo
 import com.pixabay.utils.base.BaseViewModel
-import com.pixabay.utils.models.Loading
 import com.pixabay.utils.models.Response
-import com.pixabay.utils.models.Success
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import magazine.scary.data.entities.MovieData
 import magazine.scary.domain.entities.MovieEntity
 import magazine.scary.domain.use_cases.GetPosters
 import magazine.scary.domain.use_cases.GetThrillers
-import magazine.scary.presentation.ui.dashboard.MoviesListViewState
 import javax.inject.Inject
 
 class MovieDetailsViewModel @Inject constructor(

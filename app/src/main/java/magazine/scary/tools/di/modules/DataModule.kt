@@ -11,10 +11,9 @@ import magazine.scary.data.repositories.story.StoriesRemoteRepository
 import magazine.scary.data.repositories.story.StoriesRepositoryImpl
 import magazine.scary.data.repositories.thriller.ThrillersRemoteRepository
 import magazine.scary.data.repositories.thriller.ThrillersRepositoryImpl
-import magazine.scary.domain.interfaces.ImageRepository
-import magazine.scary.domain.interfaces.MovieRepository
-import magazine.scary.domain.interfaces.StoryRepository
-import magazine.scary.domain.interfaces.ThrillerRepository
+import magazine.scary.data.repositories.translate.TranslateRemoteRepository
+import magazine.scary.data.repositories.translate.TranslateRepositoryImpl
+import magazine.scary.domain.interfaces.*
 import magazine.scary.domain.use_cases.*
 import magazine.scary.tools.utils.AsyncTransformer
 import javax.inject.Singleton
@@ -61,6 +60,15 @@ open class DataModule {
             )
         )
     }
+    @Singleton
+    @Provides
+    fun provideTranslateRepo(api: Api): TranslateRepository {
+        return TranslateRepositoryImpl(
+            TranslateRemoteRepository(
+                api
+            )
+        )
+    }
 
     @Singleton
     @Provides
@@ -100,6 +108,15 @@ open class DataModule {
     fun getImages(imageRepository: ImageRepository): GetImages {
         return GetImages(
             imageRepository = imageRepository,
+            transformer = AsyncTransformer()
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun getTranslate(translateRepository: TranslateRepository ): Translate {
+        return Translate(
+            translateRepository = translateRepository,
             transformer = AsyncTransformer()
         )
     }

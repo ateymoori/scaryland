@@ -7,16 +7,16 @@ import okhttp3.ResponseBody
 import retrofit2.http.*
 
 interface Api {
-    @FormUrlEncoded
-    @Streaming
-    @POST("https://translate.googleapis.com/translate_a/single")
-    suspend fun translate(
-        @Field("client") client: String,
-        @Field("sl") sl: String,
-        @Field("dt") dt: String,
-        @Field("tl") lang_code: String,
-        @Field("q") word: String
-    ): ResponseBody
+//    @FormUrlEncoded
+//    @Streaming
+//    @POST("https://translate.googleapis.com/translate_a/single")
+//      fun translate(
+//        @Field("client") client: String,
+//        @Field("sl") sl: String,
+//        @Field("dt") dt: String,
+//        @Field("tl") lang_code: String,
+//        @Field("q") word: String
+//    ): Observable<ResponseBody>
 
     @GET("movies/posters/{movieID}")
     fun getMoviePosters(@Path("movieID") movieID: Int): Observable<List<PosterData>>
@@ -35,5 +35,14 @@ interface Api {
 
     @GET("images")
     fun getImages(): Observable<List<ImageData>>
+
+
+    @FormUrlEncoded
+    @POST("translate")
+    fun translate(
+        @Field("language_code") language_code: String,
+        @Field("word") word: String
+    ): Observable<TranslateData>
+
 
 }
