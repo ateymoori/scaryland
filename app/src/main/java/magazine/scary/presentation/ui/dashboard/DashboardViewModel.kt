@@ -14,9 +14,6 @@ class DashboardViewModel @Inject constructor(
 
 ) : BaseViewModel() {
 
-
-
-
     val moviesViewState: MutableLiveData<MoviesListViewState> = MutableLiveData()
     val storiesViewState: MutableLiveData<StoriesListViewState> = MutableLiveData()
     val imagesViewState: MutableLiveData<ImagesListViewState> = MutableLiveData()
