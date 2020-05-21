@@ -1,12 +1,8 @@
 package magazine.scary.data.repositories.translate
 
 import io.reactivex.Observable
-import magazine.scary.domain.interfaces.StoryRepository
-import magazine.scary.domain.entities.StoryEntity
-import magazine.scary.domain.entities.ThrillerEntity
 import magazine.scary.domain.entities.TranslateEntity
-import magazine.scary.domain.interfaces.ThrillerRepository
-import magazine.scary.domain.interfaces.TranslateRepository
+import magazine.scary.domain.interactors.TranslateRepository
 
 class TranslateRepositoryImpl
 constructor(

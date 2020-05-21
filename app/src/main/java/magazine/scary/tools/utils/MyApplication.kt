@@ -16,5 +16,6 @@ class MyApplication : DaggerApplication() {
     override fun onCreate() {
         super.onCreate()
         Hawk.init(this).build()
-    }
+     }
+
 }

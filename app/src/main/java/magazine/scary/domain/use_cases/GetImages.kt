@@ -3,7 +3,7 @@ package magazine.scary.domain.use_cases
 import io.reactivex.Observable
 import magazine.scary.domain.common.Transformer
 import magazine.scary.domain.entities.ImageEntity
-import magazine.scary.domain.interfaces.ImageRepository
+import magazine.scary.domain.interactors.ImageRepository
 
 
 class GetImages(

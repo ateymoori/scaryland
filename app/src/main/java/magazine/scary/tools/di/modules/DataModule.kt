@@ -13,7 +13,7 @@ import magazine.scary.data.repositories.thriller.ThrillersRemoteRepository
 import magazine.scary.data.repositories.thriller.ThrillersRepositoryImpl
 import magazine.scary.data.repositories.translate.TranslateRemoteRepository
 import magazine.scary.data.repositories.translate.TranslateRepositoryImpl
-import magazine.scary.domain.interfaces.*
+import magazine.scary.domain.interactors.*
 import magazine.scary.domain.use_cases.*
 import magazine.scary.tools.utils.AsyncTransformer
 import javax.inject.Singleton
@@ -120,5 +120,7 @@ open class DataModule {
             transformer = AsyncTransformer()
         )
     }
+
+
 
 }

@@ -1,14 +1,13 @@
 package magazine.scary
 
 import io.reactivex.Observable
-import magazine.scary.domain.common.DomainTestUtils
 import magazine.scary.domain.common.DomainTestUtils.Companion.getImagesList
 import magazine.scary.domain.common.DomainTestUtils.Companion.getStoriesList
 import magazine.scary.domain.common.TestTransformer
 import magazine.scary.domain.entities.TranslateEntity
-import magazine.scary.domain.interfaces.ImageRepository
-import magazine.scary.domain.interfaces.StoryRepository
-import magazine.scary.domain.interfaces.TranslateRepository
+import magazine.scary.domain.interactors.ImageRepository
+import magazine.scary.domain.interactors.StoryRepository
+import magazine.scary.domain.interactors.TranslateRepository
 import magazine.scary.domain.use_cases.GetImages
 import magazine.scary.domain.use_cases.GetStories
 import magazine.scary.domain.use_cases.Translate

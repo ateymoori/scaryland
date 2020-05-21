@@ -2,7 +2,7 @@ package magazine.scary.data.repositories.image
 
 import io.reactivex.Observable
 import magazine.scary.domain.entities.ImageEntity
-import magazine.scary.domain.interfaces.ImageRepository
+import magazine.scary.domain.interactors.ImageRepository
 
 class ImageRepositoryImpl
 constructor(

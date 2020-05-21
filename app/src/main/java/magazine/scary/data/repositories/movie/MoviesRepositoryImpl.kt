@@ -1,7 +1,7 @@
 package magazine.scary.data.repositories.movie
 
 import io.reactivex.Observable
-import magazine.scary.domain.interfaces.MovieRepository
+import magazine.scary.domain.interactors.MovieRepository
 import magazine.scary.domain.entities.MovieEntity
 import magazine.scary.domain.entities.PosterEntity
 
@@ -15,6 +15,6 @@ constructor(
     }
 
     override fun getPosters(movieId: Int): Observable<List<PosterEntity>> {
-        return moviesRemoteRepository.getPostersById(movieId)
+        return moviesRemoteRepository.getPosters(movieId)
     }
 }

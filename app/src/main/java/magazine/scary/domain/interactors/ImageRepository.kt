@@ -1,4 +1,4 @@
-package magazine.scary.domain.interfaces
+package magazine.scary.domain.interactors
 
 import io.reactivex.Observable
 import magazine.scary.domain.entities.ImageEntity

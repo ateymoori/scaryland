@@ -1,9 +1,6 @@
-package magazine.scary.domain.interfaces
+package magazine.scary.domain.interactors
 
 import io.reactivex.Observable
-import magazine.scary.data.entities.MovieData
-import magazine.scary.domain.entities.MovieEntity
-import magazine.scary.domain.entities.PosterEntity
 import magazine.scary.domain.entities.StoryEntity
 
 interface StoryRepository {

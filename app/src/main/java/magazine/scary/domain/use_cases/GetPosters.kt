@@ -1,7 +1,7 @@
 package magazine.scary.domain.use_cases
 
 import io.reactivex.Observable
-import magazine.scary.domain.interfaces.MovieRepository
+import magazine.scary.domain.interactors.MovieRepository
 import magazine.scary.domain.common.Transformer
 import magazine.scary.domain.entities.PosterEntity
 

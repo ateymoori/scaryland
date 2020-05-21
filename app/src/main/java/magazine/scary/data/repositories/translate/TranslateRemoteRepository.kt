@@ -2,17 +2,14 @@ package magazine.scary.data.repositories.translate
 
 import io.reactivex.Observable
 import magazine.scary.data.api.Api
-import magazine.scary.data.mappers.ThrillerDataEntityMapper
 import magazine.scary.data.mappers.TranslateDataEntityMapper
-import magazine.scary.domain.entities.ThrillerEntity
 import magazine.scary.domain.entities.TranslateEntity
-import magazine.scary.domain.interfaces.ThrillerDataStore
-import magazine.scary.domain.interfaces.TranslateDataStore
+import magazine.scary.domain.interactors.TranslateRepository
 
 class TranslateRemoteRepository
 constructor(
     private val api: Api
-) : TranslateDataStore {
+) : TranslateRepository {
 
     private val translateMapper = TranslateDataEntityMapper()
 

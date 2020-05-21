@@ -2,10 +2,8 @@ package magazine.scary.domain.use_cases
 
 import io.reactivex.Observable
 import magazine.scary.domain.common.Transformer
-import magazine.scary.domain.interfaces.StoryRepository
-import magazine.scary.domain.entities.StoryEntity
 import magazine.scary.domain.entities.TranslateEntity
-import magazine.scary.domain.interfaces.TranslateRepository
+import magazine.scary.domain.interactors.TranslateRepository
 
 
 class Translate(

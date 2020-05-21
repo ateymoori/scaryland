@@ -4,12 +4,12 @@ import io.reactivex.Observable
 import magazine.scary.data.api.Api
 import magazine.scary.data.mappers.ImageDataEntityMapper
 import magazine.scary.domain.entities.ImageEntity
-import magazine.scary.domain.interfaces.ImageDataStore
+import magazine.scary.domain.interactors.ImageRepository
 
 class ImagesRemoteRepository
 constructor(
     private val api: Api
-) : ImageDataStore {
+) : ImageRepository {
 
     private val imageMapper = ImageDataEntityMapper()
 
